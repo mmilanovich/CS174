@@ -1,0 +1,33 @@
+html {
+	background: rgb(0,255,0);
+}
+h1 {
+	font-family: "Lucida Console", monospace;
+	text-align: center;
+}
+
+form {
+	border-style: inset;
+	float: right;
+	color: rgb(0,255,255);
+}
+
+fieldset {
+	color: rgb(255,0,0);
+}
+
+legend {
+	color: rgb(0,0,255);
+	font-weight: bold;
+}
+
+.textInput {
+	width: 400px;
+}
+
+.submit {
+	color: rgb(0,0,0);
+	background: rgb(0,100,255);
+	cursor: progress;
+	width: 400px;
+}

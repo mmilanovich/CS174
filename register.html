@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Register</title>	
+	<link rel="stylesheet" href="css/register.css">	
+</head>
+
+<body>
+	<h1>Register</h1>
+	<form action="register.php" method="POST">
+		<fieldset>
+			<legend>Register</legend>
+			<input type="text" class="textInput" name="username" placeholder="Username">
+			<br/>
+			<input type="text" class="textInput" name="password" placeholder="Password">
+			<br/>
+			<input type="text" class="textInput" name="passwordConfirm" placeholder="Confirm Password">
+			<br/>
+			<input type="text" class="textInput" name="firstName" placeholder="First Name">
+			<br/>
+			<input type="text" class="textInput" name="lastName" placeholder="Last Name">
+			<br/>
+			<p>What kind of account would you like to create?
+			<input type="checkbox" name="accountType[]" value="mentor">Mentor
+			<input type="checkbox" name="accountType[]" value="mentee">Mentee
+			</p>
+			<input type="radio" name="matchStatus" value="lookingForMatch" checked>Find me a match<br/>
+			<input type="radio" name="matchStatus" value="notLookingForMatch">I don't want a match just yet<br/>
+			<button name="submitRegister" class="submit" type="submit">Submit</button>
+		</fieldset>
+	</form>
+</body>
+</html>
