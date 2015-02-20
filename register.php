@@ -25,17 +25,12 @@
 			$lastName = $_POST['lastName'];
 			if (checkIfUserExists($_POST['username']) == 0) {
 		    	adduser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch);
-				header('Location: profilePage.html') ;
 			}	
 		} 
 	} catch(PDOException $ex) {
 		echo "<p>Connection failed</p>";
 	}
-/*
-function connect() {
-	return mysqli_connect("localhost", "root", "root", "mentorweb");
-}
-*/
+
 function addUser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch) {
 	global $con;
 	$sql = "
@@ -49,7 +44,7 @@ function addUser($username, $password, $firstName, $lastName, $isMentor, $isMent
 					  ':isMentor'=>$isMentor,
 					  ':isMentee'=>$isMentee,
 					  ':isLookingForMatch'=>$isLookingForMatch));
-	//echo "<p>Affected Rows:".$q->rowCount(); 
+	echo "<p>Affected Rows:".$q->rowCount(); 
 }
 
 function checkIfUserExists($username) {
@@ -67,50 +62,5 @@ function checkIfUserExists($username) {
 	} else {
 		return 1;
 	}
-		/*foreach ($rows as $user)
-		$firstName = $rows[0]['firstName'];
-		$lastName = $rows[0]['lastName'];
-		if ($rows[0]['mentor'] == 1) {
-			$isMentor = "Yes";
-		} else {
-			$isMentor = "No";
-		}
-		if ($rows[0]['mentee'] == 1) {
-			$isMentee = "Yes";
-		} else {
-			$isMentee = "No";
-		}
-		if ($rows[0]['lookingForMatch'] == 1) {
-			$isLookingForMatch = "Yes";
-		} else {
-			$isLookingForMatch = "No";
-		}
-		/*
-  	  	print <<<HERE
-<p>
-User exists!
-</p>
-<br/>
-<table border="1">
-	<tr>
-		<th>Username</th>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Mentor</th>
-		<th>Mentee</th>
-		<th>Looking for Match</th>
-	</tr>
-	<tr>
-		<td>$username</td>
-		<td>$firstName</td>
-		<td>$lastName</td>
-		<td>$isMentor</td>
-		<td>$isMentee</td>
-		<td>$isLookingForMatch</td>
-	</tr>
-</table>		
-HERE;
-	    return 1;
-	}*/
 }
 ?>
