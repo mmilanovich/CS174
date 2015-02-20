@@ -1,7 +1,3 @@
-<html>
-<head>
-</head>
-<body>
 <?php
 	try {
 		$con = new PDO("mysql:host=localhost;dbname=mentorweb", "root", "root");
@@ -29,6 +25,7 @@
 			$lastName = $_POST['lastName'];
 			if (checkIfUserExists($_POST['username']) == 0) {
 		    	adduser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch);
+				header('Location: profilePage.html') ;
 			}	
 		} 
 	} catch(PDOException $ex) {
@@ -52,7 +49,7 @@ function addUser($username, $password, $firstName, $lastName, $isMentor, $isMent
 					  ':isMentor'=>$isMentor,
 					  ':isMentee'=>$isMentee,
 					  ':isLookingForMatch'=>$isLookingForMatch));
-	echo "<p>Affected Rows:".$q->rowCount(); 
+	//echo "<p>Affected Rows:".$q->rowCount(); 
 }
 
 function checkIfUserExists($username) {
@@ -68,7 +65,9 @@ function checkIfUserExists($username) {
 	if (count($rows) == 0) {
 		return 0;
 	} else {
-		//foreach ($rows as $user)
+		return 1;
+	}
+		/*foreach ($rows as $user)
 		$firstName = $rows[0]['firstName'];
 		$lastName = $rows[0]['lastName'];
 		if ($rows[0]['mentor'] == 1) {
@@ -86,6 +85,7 @@ function checkIfUserExists($username) {
 		} else {
 			$isLookingForMatch = "No";
 		}
+		/*
   	  	print <<<HERE
 <p>
 User exists!
@@ -111,8 +111,6 @@ User exists!
 </table>		
 HERE;
 	    return 1;
-	}
+	}*/
 }
 ?>
-</body>
-</html>
