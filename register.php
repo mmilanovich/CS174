@@ -24,10 +24,11 @@
 				$isLookingForMatch = 0;
 			}
 			$username = $_POST['username'];
+			$password = $_POST['password'];
 			$firstName = $_POST['firstName'];
 			$lastName = $_POST['lastName'];
 			if (checkIfUserExists($_POST['username']) == 0) {
-		    	adduser($username, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch);
+		    	adduser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch);
 			}	
 		} 
 	} catch(PDOException $ex) {
@@ -38,13 +39,14 @@ function connect() {
 	return mysqli_connect("localhost", "root", "root", "mentorweb");
 }
 */
-function addUser($username, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch) {
+function addUser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch) {
 	global $con;
 	$sql = "
-		INSERT INTO userData (username, firstName, lastName, mentor, mentee, lookingForMatch)
-		VALUES (:username, :firstName, :lastName, :isMentor, :isMentee, :isLookingForMatch)";
+		INSERT INTO userData (username, password, firstName, lastName, mentor, mentee, lookingForMatch)
+		VALUES (:username, :password, :firstName, :lastName, :isMentor, :isMentee, :isLookingForMatch)";
 	$q = $con->prepare($sql);
 	$q->execute(array(':username'=>$username,
+					  ':password'=>$password,
 					  ':firstName'=>$firstName,
 					  ':lastName'=>$lastName,
 					  ':isMentor'=>$isMentor,
