@@ -36,47 +36,7 @@ function checkIfUserExists($username, $password) {
 		return 0;
 	} else {
 		//foreach ($rows as $user)
-		$firstName = $rows[0]['firstName'];
-		$lastName = $rows[0]['lastName'];
-		if ($rows[0]['mentor'] == 1) {
-			$isMentor = "Yes";
-		} else {
-			$isMentor = "No";
-		}
-		if ($rows[0]['mentee'] == 1) {
-			$isMentee = "Yes";
-		} else {
-			$isMentee = "No";
-		}
-		if ($rows[0]['lookingForMatch'] == 1) {
-			$isLookingForMatch = "Yes";
-		} else {
-			$isLookingForMatch = "No";
-		}
-  	  	print <<<HERE
-<p>
-User exists!
-</p>
-<br/>
-<table border="1">
-	<tr>
-		<th>Username</th>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Mentor</th>
-		<th>Mentee</th>
-		<th>Looking for Match</th>
-	</tr>
-	<tr>
-		<td>$username</td>
-		<td>$firstName</td>
-		<td>$lastName</td>
-		<td>$isMentor</td>
-		<td>$isMentee</td>
-		<td>$isLookingForMatch</td>
-	</tr>
-</table>		
-HERE;
+		header('Location: profilePage.html');   
 	    return 1;
 	}
 }
