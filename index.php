@@ -37,7 +37,8 @@
             Sign in</button>
             <span class="help-block"></span></span>
             <ul class="nav navbar-nav clearfix">
-                    <li><a href="register.html"><Strong>Register</Strong></a></li>
+                    
+                    <li><a href="#registerModal" data-toggle="modal" data-target="#registerModal"><Strong>Register</Strong></a></li>
                     <li><a href="http://www.google.com"><Strong>Need help?</Strong></a></li>
                     <li><a href="#"><Strong>About us</Strong></a></li>
                     </ul></span>
@@ -54,6 +55,7 @@
              
         </div>
     </div>
+    <?php include 'registerModal.php' ?>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.min.js"></script> 
     <script src="js/jquery.scrollTo.js"></script>
