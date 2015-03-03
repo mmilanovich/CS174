@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <html>
 <head>
 </head>
@@ -36,6 +39,7 @@ function checkIfUserExists($username, $password) {
 		return 0;
 	} else {
 		//foreach ($rows as $user)
+		$_SESSION['username'] = $username;
 		header('Location: profilePage.html');   
 	    return 1;
 	}
