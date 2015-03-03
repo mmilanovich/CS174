@@ -7,7 +7,7 @@
 		$con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 		try { 
 			$sql = "
-					INSERT INTO iterests (interest)
+					INSERT INTO interests (interest)
 					VALUES ('$interest')";
 			$q = $con->prepare($sql);
 			$q->execute();
