@@ -1,8 +1,12 @@
+<html>
+<body>
 <?php
+	
 	try {
 		$con = new PDO("mysql:host=localhost;dbname=mentorweb", "root", "root");
 		$con->setAttribute(PDO::ATTR_ERRMODE,
 						   PDO::ERRMODE_EXCEPTION);
+						   
 		if (isset($_POST['submitRegister'])) {
 			if ($_POST['accountType'][0] == "mentor") {
 				$isMentor = 1;
@@ -19,6 +23,8 @@
 			} else {
 				$isLookingForMatch = 0;
 			}
+			echo "made it this far";
+			
 			$username = $_POST['username'];
 			$password = $_POST['password'];
 			$firstName = $_POST['firstName'];
@@ -27,11 +33,12 @@
 		    	adduser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch);
 				header('Location: profilePage.html');
 			}	
+						   echo "made it this far";
 		} 
 	} catch(PDOException $ex) {
 		echo "<p>Connection failed</p>";
 	}
-
+	
 function addUser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch) {
 	global $con;
 	$sql = "
@@ -64,3 +71,4 @@ function checkIfUserExists($username) {
 	}
 }
 ?>
+
