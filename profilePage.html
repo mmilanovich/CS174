@@ -1,10 +1,30 @@
 <html>
 <head>
 	<title>User Profile Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	    <!-- Squad theme CSS -->
+	    <link href="css/style.css" rel="stylesheet">
+	    <link href="color/default.css" rel="stylesheet">
+	    <script src="js/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/profilePage.css">
 </head>
 
 <body>
+	<form action="SearchForMatch.php" method="GET">
+	<div class="col-lg-6 searchbar">
+		<label>Find a mentor or mentee</label>
+	    <div class="input-group">  
+	      	<input type="text" class="form-control" name="interest" placeholder="Search for an interest...">
+	      	<span class="input-group-btn">
+	        <button type="submit" class="btn btn-default" type="button">Go!</button>
+	      	</span>
+		  
+	    </div><!-- /input-group -->
+	  </div><!-- /.col-lg-6 -->
+	  </form>
+	  <br>
   <div class="wrapper">
     <h1>Mentor Web</h1>
     <p>An sample layout for user profile</p>
@@ -48,6 +68,11 @@
     
     
   </div>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.min.js"></script> 
+  <script src="js/jquery.scrollTo.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/custom.js"></script>
 </body>
 
 

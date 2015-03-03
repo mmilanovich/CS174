@@ -1,8 +1,7 @@
 <?php
 	session_start();
-	//$interest = $_GET['interest'];
+	$interest = $_GET['interest'];
 	$username = $_SESSION['username'];
-	$interest = "CSS";
 	global $names;
 	$mentor = 0;
 	$mentee = 0;
@@ -18,7 +17,7 @@
 		$sql = "
 				SELECT userdata.username, userdata.mentor, userdata.mentee
 				FROM userdata, interests, user_interests
-				WHERE interest=:interest AND interests.id = user_interests.interest_id AND user_interests.user_id = userdata.username;";
+				WHERE interest=:interest AND interests.id = user_interests.interest_id AND user_interests.user_id = userdata.username AND userdata.username != '$username';";
 		$q = $con->prepare($sql);
 		$q->execute(array(':interest' => $interest));
 		$names = $q->fetchAll();
