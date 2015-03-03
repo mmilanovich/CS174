@@ -25,6 +25,7 @@
 			$lastName = $_POST['lastName'];
 			if (checkIfUserExists($_POST['username']) == 0) {
 		    	adduser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch);
+				header('Location: profilePage.html');
 			}	
 		} 
 	} catch(PDOException $ex) {
@@ -44,7 +45,6 @@ function addUser($username, $password, $firstName, $lastName, $isMentor, $isMent
 					  ':isMentor'=>$isMentor,
 					  ':isMentee'=>$isMentee,
 					  ':isLookingForMatch'=>$isLookingForMatch));
-	echo "<p>Affected Rows:".$q->rowCount(); 
 }
 
 function checkIfUserExists($username) {
