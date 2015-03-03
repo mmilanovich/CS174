@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	$mentor = $_POST['mentor'];
 	$mentee = $_POST['mentee'];
 	

@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `interests` (
 --
 
 CREATE TABLE IF NOT EXISTS `mentor_mentee` (
-  `mentor_user_id` int(11) NOT NULL,
-  `mentee_user_id` int(11) NOT NULL
+  `mentor_user_id` char(20) NOT NULL,
+  `mentee_user_id` char(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `userdata` (
 --
 
 CREATE TABLE IF NOT EXISTS `user_interests` (
-  `user_id` int(11) NOT NULL,
+  `user_id` char(20) NOT NULL,
   `interest_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
