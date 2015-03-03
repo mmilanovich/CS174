@@ -50,7 +50,8 @@ CREATE TABLE IF NOT EXISTS `mentor_mentee` (
 -- Table structure for table `userdata`
 --
 
-CREATE TABLE IF NOT EXISTS `userdata` (
+CREATE TABLE IF NOT EXISTS `userdata` (.
+  `id` int(11) NOT NULL,
   `username` char(20) NOT NULL,
   `password` char(45) DEFAULT NULL,
   `firstName` char(45) DEFAULT NULL,
@@ -93,7 +94,7 @@ ALTER TABLE `mentor_mentee`
 -- Indexes for table `userdata`
 --
 ALTER TABLE `userdata`
- ADD PRIMARY KEY (`username`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_interests`
@@ -109,6 +110,12 @@ ALTER TABLE `user_interests`
 -- AUTO_INCREMENT for table `interests`
 --
 ALTER TABLE `interests`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `userdata`
+--
+ALTER TABLE `user`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
