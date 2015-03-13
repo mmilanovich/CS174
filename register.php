@@ -6,10 +6,11 @@
 		$con = new PDO("mysql:host=localhost;dbname=mentorweb", "root", "root");
 		$con->setAttribute(PDO::ATTR_ERRMODE,
 						   PDO::ERRMODE_EXCEPTION);
-						   
+						  
 		if (isset($_POST['submitRegister'])) {
 			if ($_POST['accountType'][0] == "mentor") {
 				$isMentor = 1;
+                               
 			} else {
 				$isMentor = 0;
 			}
@@ -23,26 +24,29 @@
 			} else {
 				$isLookingForMatch = 0;
 			}
-			echo "made it this far";
+			//echo "made it this far";
 			
 			$username = $_POST['username'];
 			$password = $_POST['password'];
 			$firstName = $_POST['firstName'];
 			$lastName = $_POST['lastName'];
 			if (checkIfUserExists($_POST['username']) == 0) {
+                            echo "made it this far1";
 		    	adduser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch);
 				header('Location: profilePage.php');
 			}	
-						   echo "made it this far";
+                        
 		} 
 	} catch(PDOException $ex) {
+            
 		echo "<p>Connection failed</p>";
 	}
 	
 function addUser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch) {
 	global $con;
+        echo "made it this far into add";
 	$sql = "
-		INSERT INTO userData (username, password, firstName, lastName, mentor, mentee, lookingForMatch)
+		INSERT INTO userdata (username, password, firstName, lastName, mentor, mentee, lookingForMatch)
 		VALUES (:username, :password, :firstName, :lastName, :isMentor, :isMentee, :isLookingForMatch)";
 	$q = $con->prepare($sql);
 	$q->execute(array(':username'=>$username,
@@ -58,7 +62,7 @@ function checkIfUserExists($username) {
 	global $con;
 	$sql = "
 			SELECT * 
-			FROM userData
+			FROM userdata
 			WHERE username=:username
 			LIMIT 1";
 	$q = $con->prepare($sql);

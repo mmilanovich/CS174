@@ -1,0 +1,1 @@
+window.onload = startAnimation;function startAnimation(){        }

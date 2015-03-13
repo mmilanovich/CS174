@@ -9,8 +9,184 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="color/default.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
+    
+    <script type = "text/javascript">
+    
+        const CANVAS_X = 60;
+        const CANVAS_Y = 60;
+        const CANVAS_W = 350;
+        const CANVAS_H = 350;
+        const IMAGE_W  = 250;
+        const IMAGE_H  = 250;
+        
+        const RIGHT    = CANVAS_W - 100;
+        const BOTTOM   = CANVAS_H - 100;
+        
+        var x  = 0;
+        var y  = 0;
+        var dx = 10;
+        var dy = 7;
+        
+        var cx11= 25;
+        var cx12= 10;
+        var cx13= 100;
+        var cx14= 250;
+        var cx15= 90;
+        var cx16= 60;
+        var cx17= 20;
+        var cx18= 200;
+        var cy17=200;
+        
+         var dcx1 = 3;
+         var dcx2 = 2;
+         var dcx3 = .8;
+         var dcx4 = -.9;
+         var dcx5 = .3;
+         var dcx6 = .15;
+         var dcx7 = .5;
+         var dcy7 = .03;
+         var dcx8 = -.04;
+        
+        var leftcon;
+        var centercon1;
+        var rightcon;
+        
+        var leftimage;
+        var centerimage1;
+        var centerimage2;
+        var centerimage3;
+        var centerimage4;
+        var centerimage5;
+        
+        var rightimage;
+        var angle = 0;
+        
+        function startAnimation()
+        {
+            
+            
+            leftcon = document.getElementById("leftcanvas").getContext("2d");
+            leftimage = new Image();
+            leftimage.src = "photos/sjsu8.jpg";
+            setInterval(leftdraw, 500);
+           
+            centercon1 = document.getElementById("centercanvas1").getContext("2d");
+            centerimage1 = new Image();
+            centerimage2 = new Image();
+            centerimage3 = new Image();
+            centerimage4 = new Image();
+            centerimage5 = new Image();
+            centerimage6 = new Image();
+            centerimage7 = new Image();
+            centerimage8 = new Image();
+            centerimage1.src = "photos/sun.png";
+            centerimage2.src = "photos/cloud.png";
+            centerimage3.src = "photos/cow.png";
+            centerimage4.src = "photos/horse.png";
+            centerimage5.src = "photos/donkey.png";
+            centerimage6.src = "photos/duck.png";
+            centerimage7.src = "photos/pig.png";
+            centerimage8.src = "photos/sheep.png";
+            setInterval(centerdraw, 350); 
+           
+           
+            rightcon = document.getElementById("rightcanvas").getContext("2d");
+            rightimage = new Image();
+            rightimage.src = "photos/sjsu6.png";
+            setInterval(rightdraw, 300); 
+               
+            
+            
+        }
+        
+        function leftdraw()
+        {
+            leftcon.strokeStyle = "black";
+            leftcon.fillStyle = "#F8F8FF";
+            leftcon.fillRect(0, 0, CANVAS_W, CANVAS_H);
+            leftcon.strokeRect(0, 0, CANVAS_W, CANVAS_H);
+            
+            angle += 0.25;
+            if (angle > 2* 3.14) angle = 0;
+            
+            leftcon.save();
+            leftcon.translate(175, 175);
+            leftcon.rotate(angle);
+            leftcon.drawImage(leftimage, -IMAGE_W/2, -IMAGE_H/2, 
+                                  IMAGE_W, IMAGE_H);
+            leftcon.restore();
+        }    
+        
+        function centerdraw()
+        {
+            centercon1.strokeStyle = "black";
+            centercon1.fillStyle = "#66CCFF";
+            centercon1.fillRect(0, 0, CANVAS_W, CANVAS_H);
+            centercon1.strokeRect(0, 0, CANVAS_W, CANVAS_H);
+            centercon1.drawImage(centerimage1,cx11,10,75,75);
+            centercon1.drawImage(centerimage2,cx12,33,120,110);
+            centercon1.drawImage(centerimage3,cx13,280,70,70);
+            centercon1.drawImage(centerimage4,cx14,225,65,65);
+            centercon1.drawImage(centerimage5,cx15,255,50,50);
+            centercon1.drawImage(centerimage6,cx16,300,25,25);
+            centercon1.drawImage(centerimage7,cx17,cy17,30,30);
+            centercon1.drawImage(centerimage8,cx18,200,30,30);
+        
+            cx11 += dcx1;
+            cx12 += dcx2;
+            cx13 += dcx3;
+            cx14 += dcx4;
+            cx15 += dcx5;
+            cx16 += dcx6;
+            cx17 += dcx7;
+           
+            cx18 += dcx8;
+            
+            if (cx11 < 0)  cx11 = CANVAS_W;
+            else if ( cx11 > CANVAS_W)  cx11 = 0;
+            if (cx12 < 0)  cx12 = CANVAS_W;
+            else if ( cx12 > CANVAS_W)  cx12 = 0;
+            if (cx13 < 0)  cx13 = CANVAS_W;
+            else if ( cx13 > CANVAS_W)  cx13 = 0;
+            if (cx14 < 0)  cx14 = CANVAS_W;
+            else if ( cx14 > CANVAS_W)  cx14 = 0;
+            if (cx15 < 0)  cx15 = CANVAS_W;
+            else if ( cx15 > CANVAS_W)  cx15 = 0;
+            if (cx16 < 0)  cx16 = CANVAS_W;
+            else if ( cx16 > CANVAS_W)  cx16 = 0;
+            if (cx17 < 0)  cx17 = CANVAS_W;
+            else if ( cx17 > CANVAS_W)  cx17 = 0;
+           
+            if (cx18 < 0)  cx18 = CANVAS_W;
+            else if ( cx18 > CANVAS_W)  cx18 = 0;
+           
+        }
+            
+        
+        
+        
+        function rightdraw()
+        {
+            rightcon.strokeStyle = "black";
+            rightcon.fillStyle = "#DCDCDC";
+            rightcon.fillRect(0, 0, CANVAS_W, CANVAS_H);
+            rightcon.strokeRect(0, 0, CANVAS_W, CANVAS_H);
+            rightcon.drawImage(rightimage, x, y, 100, 100);
+            
+            x += dx;
+            y += dy;
+            
+            // Bounce off a wall
+            if ((x < 0) || (x > RIGHT))  dx = -dx;
+           if ((y < 0) || (y > BOTTOM)) dy = -dy;
+        }
+        
+        
+        
+        
+    </script>
 </head>
-<body style=" background-color:ghostwhite;">
+<body style=" background-color:ghostwhite;" onload="startAnimation()">
     
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
             <div class="container">
@@ -39,8 +215,8 @@
             <ul class="nav navbar-nav clearfix">
                     
                     <li><a href="#registerModal" data-toggle="modal" data-target="#registerModal"><Strong>Register</Strong></a></li>
-                    <li><a href="http://www.google.com"><Strong>Need help?</Strong></a></li>
-                    <li><a href="#"><Strong>About us</Strong></a></li>
+                    <li><a href="http://www.google.com"><Strong>Help</Strong></a></li>
+                    <li><a href="#"><Strong>About Us</Strong></a></li>
                     </ul></span>
                
           </form>
@@ -50,9 +226,22 @@
     </div>
     <div class="container" style="z-index:-1; margin-top:12%; background-color:GhostWhite">
         <div class="row">
-            <div class="col-md-4"><img class="img-responsive" src="photos/sjsu6.png"></div>
-            <div class="col-md-offset-4 col-md-4"><img class="img-responsive" src ="photos/sjsu8.jpg"></div>
-             
+            <div class="col-md-4">
+                <canvas id="leftcanvas"height = "500" width = "350">
+                <p class="bg-danger">Canvas not supported</p>
+                </canvas>
+           
+            </div>
+            <div class="col-md-4">
+                <canvas id="centercanvas1"height = "500" width = "350">
+                <p class="bg-danger">Canvas not supported</p>
+                </canvas>
+            </div>
+            <div class="col-md-4">
+                <canvas id="rightcanvas"height = "500" width = "350">
+                <p class="bg-danger">Canvas not supported</p>
+                </canvas>
+            </div>
         </div>
     </div>
     <?php include 'registerModal.php' ?>
@@ -61,6 +250,7 @@
     <script src="js/jquery.scrollTo.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/custom.js"></script>
+   
     
 </body>
 </html>
