@@ -1,0 +1,5 @@
+body .modal-content {
+    /* new custom width */
+    width: 45%;
+    margin-left: 25%;
+}

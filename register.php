@@ -31,7 +31,7 @@
 			$lastName = $_POST['lastName'];
 			if (checkIfUserExists($_POST['username']) == 0) {
 		    	adduser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch);
-				header('Location: profilePage.html');
+				header('Location: profilePage.php');
 			}	
 						   echo "made it this far";
 		} 

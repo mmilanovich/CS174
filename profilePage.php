@@ -6,9 +6,17 @@
 	    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	    <!-- Squad theme CSS -->
 	    <link href="css/style.css" rel="stylesheet">
+      <link href="css/registerThankYou.css" rel="stylesheet">
 	    <link href="color/default.css" rel="stylesheet">
 	    <script src="js/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/profilePage.css">
+  <script type="text/javascript">
+      $(window).load(function(){
+          $('#thankYouModal').modal('show');
+      });
+
+      setTimeout(function() { $('#thankYouModal').modal('hide'); }, 2000);
+  </script>
 </head>
 
 <body>
@@ -73,11 +81,12 @@
       	<a href="#">Search</a>
       </div>
       
-    </div><
+    </div>
     
     
     
   </div>
+  <?php include 'registerThankYou.html' ?>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.easing.min.js"></script> 
   <script src="js/jquery.scrollTo.js"></script>
