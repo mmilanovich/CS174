@@ -244,6 +244,7 @@
             </div>
         </div>
     </div>
+	
     <?php include 'registerModal.php' ?>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.min.js"></script> 
