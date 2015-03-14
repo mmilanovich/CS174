@@ -13,10 +13,17 @@
   <script type="text/javascript" src="js/menu.js"></script>
   <script type="text/javascript">
       $(window).load(function(){
-          $('#thankYouModal').modal('show');
+          alert(document.referrer.substring(document.referrer.lastIndexOf("/")));
+          if(document.referrer.substring(document.referrer.lastIndexOf("/")) == "/")
+          {
+            $('#thankYouModal').modal('show');
+            setTimeout(function() { $('#thankYouModal').modal('hide'); }, 2000);
+          }
+          
+
       });
 
-      setTimeout(function() { $('#thankYouModal').modal('hide'); }, 2000);
+      
   </script>
 </head>
 
@@ -110,7 +117,9 @@
     
     
   </div>
-  <?php include 'registerThankYou.html' ?>
+  <?php include 'registerThankYou.html' ;
+  echo "<p>" . $_SERVER['HTTP_REFERER'] . "</p>";
+  ?>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.easing.min.js"></script> 
   <script src="js/jquery.scrollTo.js"></script>

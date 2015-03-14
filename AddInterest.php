@@ -14,14 +14,14 @@
 		} catch(PDOException $ex) {
 		}
 		$sql = "
-			INSERT INTO user_interests (id, interest_id)
-			SELECT username, id
+			INSERT INTO user_interests (user_id, interest_id)
+			SELECT username, interests.id
 			FROM interests, userdata
 			WHERE interest='$interest' AND username='$username'
 			";
 		$q = $con->prepare($sql);
 		$q->execute();
-		header('Location: profilePage.html'); 
+		header('Location: profilePage.php'); 
 	} catch(PDOException $ex) {
 		echo "<p>Connection failed</p> $ex";
 	}
