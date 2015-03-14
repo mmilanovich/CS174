@@ -75,7 +75,7 @@ p.userInfo {
 
 
 a:link {
-    color: #FF0000;
+    color: blue;
 }
 
 /* visited link */
@@ -102,6 +102,44 @@ a:active {
   padding: 100px;
   margin-bottom: 20px;
 }
+
+
+/* Menu */
+div.menuBar {
+    width: 15em;
+    margin-bottom: 10px;
+    background-color: gray;
+    text-align: center;
+}
+
+ul.menu {
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.menu li {
+    font: 1em arial, helvetica, sans-serif;
+    padding-left: 12px;
+}
+
+a.menuLink, li a {
+    text-decoration: none;
+    color: white;
+    padding-left: 5px;
+}
+
+a.menuLink {
+    font-size: 20px;
+}
+
+ul.menu li a:hover {
+    background-color: lightgray;
+    color: blue;
+    padding-right: 10px;
+}
+/* End menu */
 
 @media all and ( min-width: 600px ) {
   

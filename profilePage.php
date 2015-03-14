@@ -10,6 +10,7 @@
 	    <link href="color/default.css" rel="stylesheet">
 	    <script src="js/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/profilePage.css">
+  <script type="text/javascript" src="js/menu.js"></script>
   <script type="text/javascript">
       $(window).load(function(){
           $('#thankYouModal').modal('show');
@@ -76,9 +77,32 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
       	</p>
       	
-      	<a href="index.html">Homepage</a>
-      	<a href="#">Log out</a>
-      	<a href="#">Search</a>
+
+        <div class="menuBar">
+        <a href="menu1.html" class="menuLink">Home</a>
+        <ul class="menu" id="menu1">
+            <li><a href="pg1.html">About Us</a></li>
+            <li><a href="pg2.html">Contact Us</a></li>
+            <li><a href="pg3.html">Donate</a></li>
+            <li><a href="pg4.html">Other</a></li>
+        </ul>
+        </div>
+        <div class="menuBar">
+        <a href="menu2.html" class="menuLink">Contact Us</a>
+        <ul class="menu" id="menu2">
+            <li><a href="pg5.html">Send eMail</a></li>
+            <li><a href="pg6.html">Facebook</a></li>
+            <li><a href="pg7.html">Twitter</a></li>
+        </ul>
+        </div>
+        <div class="menuBar">
+        <a href="menu3.html" class="menuLink">Matthew Williyanson</a>
+        <ul class="menu" id="menu3">
+            <li><a href="pg8.html">Find a Match</a></li>
+            <li><a href="pg9.html">Update Status</a></li>
+            <li><a href="pg9.html">Log Out</a></li>
+        </ul>
+        </div>
       </div>
       
     </div>
