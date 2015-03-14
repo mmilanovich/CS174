@@ -14,7 +14,7 @@
 		} catch(PDOException $ex) {
 		}
 		$sql = "
-			INSERT INTO user_interests (user_id, interest_id)
+			INSERT INTO user_interests (id, interest_id)
 			SELECT username, id
 			FROM interests, userdata
 			WHERE interest='$interest' AND username='$username'
