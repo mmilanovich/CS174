@@ -13,7 +13,6 @@
   <script type="text/javascript" src="js/menu.js"></script>
   <script type="text/javascript">
       $(window).load(function(){
-          alert(document.referrer.substring(document.referrer.lastIndexOf("/")));
           if(document.referrer.substring(document.referrer.lastIndexOf("/")) == "/")
           {
             $('#thankYouModal').modal('show');
