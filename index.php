@@ -8,8 +8,9 @@
     <!-- Squad theme CSS -->
     <link href="css/style.css" rel="stylesheet">
     <link href="color/default.css" rel="stylesheet">
+    <link href="js/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet"></link>
     <script src="js/jquery.min.js"></script>
-    
+    <script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>  
     <script type = "text/javascript">
     
         const CANVAS_X = 60;
@@ -181,7 +182,7 @@
            if ((y < 0) || (y > BOTTOM)) dy = -dy;
         }
         
-        
+    
         
         
     </script>
@@ -243,6 +244,9 @@
                 </canvas>
             </div>
         </div>
+   </div>
+            </div>
+        </div>
     </div>
 	
     <?php include 'registerModal.php' ?>
@@ -251,7 +255,7 @@
     <script src="js/jquery.scrollTo.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/custom.js"></script>
-   
+     
     
 </body>
 </html>
