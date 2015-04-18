@@ -116,6 +116,8 @@
             leftcon.drawImage(leftimage, -IMAGE_W/2, -IMAGE_H/2, 
                                   IMAGE_W, IMAGE_H);
             leftcon.restore();
+            $("#leftcanvas").fadeIn(1000);
+            $("#leftcanvas").fadeOut("slow");
         }    
         
         function centerdraw()
@@ -179,10 +181,11 @@
             
             // Bounce off a wall
             if ((x < 0) || (x > RIGHT))  dx = -dx;
-           if ((y < 0) || (y > BOTTOM)) dy = -dy;
+            if ((y < 0) || (y > BOTTOM)) dy = -dy;
+
+            $("#rightcanvas").fadeIn(1000);
+            $("#rightcanvas").fadeOut("slow");
         }
-        
-    
         
         
     </script>
@@ -210,7 +213,7 @@
             <div class="form-group">
               <input type="password" placeholder="Password" class="form-control" name="password">
             </div>
-            <button type="submit" name="submitLogin" class="btn btn-info"><span class="glyphicon glyphicon-user"></span>
+            <button type="submit" name="submitLogin" class="ui-button"><span class="glyphicon glyphicon-user"></span>
             Sign in</button>
             <span class="help-block"></span></span>
             <ul class="nav navbar-nav clearfix">
