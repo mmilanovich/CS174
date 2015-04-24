@@ -11,6 +11,7 @@
     <link href="js/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet"></link>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>  
+    <script type = "text/javascript" src="ajax.js"></script>
     <script type = "text/javascript">
     
         const CANVAS_X = 60;
@@ -251,15 +252,26 @@
             </div>
         </div>
     </div>
-	
+	<form align="middle"action="">
+        <button type="button" 
+                onclick="doAJAX()">
+            Click here for a welcome message
+        </button>
+    </form>
+    <hr />
+    <div id="output">
+        <p align="middle">Click the button above for a special welcome message</p>
+    </div>
+
     <?php include 'registerModal.php' ?>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.min.js"></script> 
     <script src="js/jquery.scrollTo.js"></script>
     <script src="js/wow.min.js"></script>
     <script src="js/custom.js"></script>
-     
+    
     
 </body>
+
 </html>
 
