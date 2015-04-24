@@ -40,7 +40,7 @@ function checkIfUserExists($username, $password) {
 	} else {
 		//foreach ($rows as $user)
 		$_SESSION['username'] = $username;
-		header('Location: profilePage.html');   
+		header('Location: profilePage.php');   
 	    return 1;
 	}
 }

@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Messager</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	    <!-- Squad theme CSS -->
+		<link href="css/message.css" rel="stylesheet">
+	    <link href="color/default.css" rel="stylesheet">
+	    <script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/message.js"></script>
+	
+  
+</head>
+<body>
+	<h1>Messanger</h1>
+		<a href="profilePage.php" id="backbutton" class="btn btn-default">Back to Profile</a>
+	<br>
+	<div id="dropdown" class="dropdown">
+		  <select id="contactList" class="form-control">
+		  </select>
+	</div>	
+	<br>
+		<div class="form-group">
+		  <label for="comment">Message Body:</label>
+		  <textarea id="messageBody" class="form-control" rows="5" id="comment"></textarea>
+		</div>
+		<button class="btn btn-default" onclick="sendMessage()" type="button">Send</button>
+	   <br>
+	   <br>
+	   <div id="messages">
+	   </div>
+</body>
+</html>

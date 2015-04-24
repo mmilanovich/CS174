@@ -54,6 +54,8 @@
     <h1>Mentor Web</h1>
     <p>An sample layout for user profile</p>
     
+	<br/>
+	<a href="message.html"><button class="btn btn-default" type="button">Message A Contact</button><a/>
     <div class="container clearfix">
     
     

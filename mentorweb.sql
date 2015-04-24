@@ -9,7 +9,7 @@
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-DROP DATABASE `MentorWeb`;
+DROP DATABASE IF EXISTS `MentorWeb`;
 CREATE DATABASE `MentorWeb` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `MentorWeb`;
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `mentor_mentee` (
 -- Table structure for table `userdata`
 --
 
-CREATE TABLE IF NOT EXISTS `userdata` (.
+CREATE TABLE IF NOT EXISTS `userdata` (
   `id` int(11) NOT NULL,
   `username` char(20) NOT NULL,
   `password` char(45) DEFAULT NULL,
@@ -61,7 +61,17 @@ CREATE TABLE IF NOT EXISTS `userdata` (.
   `lookingForMatch` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE IF NOT EXISTS `messages` (
+  `senderID` CHAR(20) NULL,
+  `recipientID` CHAR(20) NULL,
+  `messageBody` VARCHAR(1000) NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
