@@ -1,3 +1,6 @@
+<?php
+include('session.php');
+?>
 <html>
 <head>
 	<title>User Profile Page</title>
@@ -61,7 +64,7 @@
     
       <div class="primary">
         <h2>Profile of</h2>
-        <h3>Matthew Williyanson</h3>
+        <h3><?php printf("$firstName $lastName")?></h3>
         
         
         <h3 class="special">Biography</h3>
@@ -71,16 +74,36 @@
 	    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse architecto modi ratione porro magnam explicabo! Porro dolore aut nam sed officiis dolores unde quo nostrum vero earum error ipsum cumque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere aliquam explicabo sapiente doloremque perspiciatis qui iste ipsa consectetur suscipit eum totam laborum quidem quam sint ducimus fugit dolorem illum doloribus!
 
       	</p>
-      	
-      	<p class="userInfo"> Username : williyanson </p>
-        <p class="userInfo"> Account type : Mentor </p>
-        <p class="userInfo"> I'm looking for a match!</p>
+
+        
+      	<?php
+        if($mentor == 0)
+          $mentorString = "";
+        else
+          $mentorString = "Mentor";
+
+        if($mentee == 0)
+          $menteeString = "";
+        else
+          $menteeString = "Mentee";
+
+        if($lookingForMatch == 0)
+          $lookingForMatchString = "No";
+        else
+          $lookingForMatchString = "Yes";
+        ?>
+
+
+      	<p class="userInfo"> Username : <?php echo $username; ?> </p>
+        <p class="userInfo"> I'm a : <?php printf("$mentorString,  $menteeString")?> </p>
+        <p class="userInfo"> Looking for a match : <?php echo $lookingForMatchString?></p>
+        
       </div>
       
       
       <div class="secondary">
         <h2>Side Menu</h2>
-        
+        <p><a href="updateInterest"> <font color="red">Click here to update my interest!</p>
         <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
       	</p>
@@ -104,7 +127,7 @@
         </ul>
         </div>
         <div class="menuBar">
-        <a href="menu3.html" class="menuLink">Matthew Williyanson</a>
+        <a href="menu3.html" class="menuLink"><?php printf("$firstName $lastName")?></a>
         <ul class="menu" id="menu3">
             <li><a href="pg8.html">Find a Match</a></li>
             <li><a href="pg9.html">Update Status</a></li>
