@@ -3,24 +3,24 @@
 	$username = $_SESSION['username'];
 	$interest = $_GET['interest'];
 	try {
-		$con = new PDO("mysql:host=localhost;dbname=mentorweb", "root", "root");
+		$con = new PDO("mysql:host=localhost;dbname=MentorWeb", "root", "root");
 		$con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-		try { 
-			$sql = "
-					INSERT INTO interests (interest)
-					VALUES ('$interest')";
-			$q = $con->prepare($sql);
-			$q->execute();
-		} catch(PDOException $ex) {
-		}
-		$sql = "
-			INSERT INTO user_interests (user_id, interest_id)
-			SELECT username, interests.id
-			FROM interests, userdata
-			WHERE interest='$interest' AND username='$username'
-			";
-		$q = $con->prepare($sql);
-		$q->execute();
+		
+		// Add a new interest & 
+		// Add into user's list of interest
+		$query = "INSERT INTO `MentorWeb`.`interests` (`id`, `interest`)
+		          VALUES (NULL, :interest);
+
+		          INSERT INTO `MentorWeb`.`user_interests` (`user_id`, `interest_id`) 
+		          SELECT :username, interests.id
+		          FROM interests
+		          WHERE interest = :interest";
+
+		$ps = $con->prepare($query);
+		$ps->bindParam(':username', $username);
+		$ps->bindParam(':interest', $interest);
+		$ps->execute();
+		
 		header('Location: profilePage.php'); 
 	} catch(PDOException $ex) {
 		echo "<p>Connection failed</p> $ex";
