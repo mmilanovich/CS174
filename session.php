@@ -19,7 +19,7 @@ $query = "SELECT  *
           WHERE userdata.username = :username";    
                     
 $con = new PDO("mysql:host=localhost;dbname=MentorWeb",
-               "williyanson", "password");                    
+               "root", "root");                    
 $ps = $con->prepare($query);
 $ps->bindParam(':username', $username);
 $ps->execute();

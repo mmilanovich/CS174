@@ -5,7 +5,7 @@
                 // Connect to the database.
                 // localhost dbname dbuser dbpass
                 $con = new PDO("mysql:host=localhost;dbname=MentorWeb",
-                               "williyanson", "password");
+                               "root", "root");
                 $con->setAttribute(PDO::ATTR_ERRMODE,
                        PDO::ERRMODE_EXCEPTION);
                 

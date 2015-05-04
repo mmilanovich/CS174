@@ -41,14 +41,14 @@
 </head>
 
 <body>
-	<h1>Mentors</h1>
+	<h1 class="t" >Mentors</h1>
 	<?php
 	for ($i = 0; $i < count($names); $i++) {
 		if ($names[$i]["mentor"] == 1) {
 			echo '<form action="AddConnection.php" method="POST">
 				<input type="hidden" name="mentor" value="'.$names[$i]["username"].'">
 				<input type="hidden" name="mentee" value="'.$username.'">
-				<button type="submit" name="submitMatch" class="btn btn-info"><span class="glyphicon glyphicon-user"></span>
+				<button  type="submit" name="submitMatch" class="btn btn-info viewprofile"><span class="glyphicon glyphicon-user"></span>
             Match me with '.$names[$i]["username"].'</button></form>';
 		}
 	}
@@ -61,12 +61,23 @@
 			echo '<form action="AddConnection.php" method="POST">
 				<input type="hidden" name="mentor" value="'.$username.'">
 				<input type="hidden" name="mentee" value="'.$names[$i]["username"].'">
-				<button type="submit" name="submitMatch" class="btn btn-info"><span class="glyphicon glyphicon-user"></span>
+				<button  type="submit" name="submitMatch" class="btn btn-info viewprofile" 
+				data-name-n="'.$names[$i]["username"].'"><span class="glyphicon glyphicon-user"></span>
             Match me with '.$names[$i]["username"].'</button></form>';
 		}
 	}
 	
+	
+	
 	?>
+	<script>
+		$(".viewprofile").on("click",function()
+		{
+			var t ="testing";
+			var test = $(this).data("name-n");
+			alert("hello--"+test+t);
+		});
+	</script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.min.js"></script> 
     <script src="js/jquery.scrollTo.js"></script>
