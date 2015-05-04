@@ -1,5 +1,7 @@
 <?php
 include('session.php');
+include('interestFunctions.php');
+
 ?>
 <html>
 <head>
@@ -98,6 +100,54 @@ include('session.php');
         <p class="userInfo"> I'm a : <?php printf("$mentorString,  $menteeString")?> </p>
         <p class="userInfo"> Looking for a match : <?php echo $lookingForMatchString?></p>
         
+        <?php
+        $data = myInterest($username);
+        //print_r($data);
+        // We're going to construct an HTML table.
+                print "<table border='1'>\n";
+                print "
+                <tr>
+                  <td>My Interest</td>
+                <tr>
+                ";
+                
+                // Construct the HTML table row by row.
+                foreach ($data as $row) { 
+                    print "            <tr>\n";
+                    
+                    foreach ($row as $name => $value) {
+                          $interestName = getInterestName($value);
+
+                        print "<td>$interestName</td>\n";
+                    }
+                    
+                    print "            </tr>\n";
+                }
+
+
+
+                
+                print "        </table>\n<br>";
+        ?>
+
+        <form action="removeInterest.php" method="get">
+        <fieldset>
+            <legend>Remove one of my interest</legend>
+            <p>
+                <label>Interest : </label>
+                <input name="interest" type="text">
+            </p>
+            
+            <p>
+                <input type="submit" value="Submit">
+            </p>
+            
+            
+            
+        </fieldset>
+    </form>
+
+
       </div>
       
       

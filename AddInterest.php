@@ -2,7 +2,13 @@
 	session_start();
 	$username = $_SESSION['username'];
 	$interest = $_GET['interest'];
-	try {
+	include('session.php');
+
+	include('interestFunctions.php');
+	addInterest($interest);
+	addUserInterest($username, $interest);
+	
+	/*try {
 		$con = new PDO("mysql:host=localhost;dbname=MentorWeb", "root", "root");
 		$con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 		
@@ -24,5 +30,5 @@
 		header('Location: profilePage.php'); 
 	} catch(PDOException $ex) {
 		echo "<p>Connection failed</p> $ex";
-	}
+	}*/
 ?>
