@@ -1,14 +1,18 @@
 <?php
 	session_start();
-	$view = $_POST['viewprofile'];
-	echo' <script> alert ( "herephp"); </script>';
+	
+	$view = $_POST ['viewprofile'];
+	
 	try {
 		$con = new PDO("mysql:host=localhost;dbname=MentorWeb", "root", "root");
 		$con->setAttribute(PDO::ATTR_ERRMODE,
 						   PDO::ERRMODE_EXCEPTION);
 						   
-		$sql = "SELECT mentor_user_id  FROM mentor_mentee WHERE mentee_user_id=:user";
-		
+		$sql = "SELECT interest  
+				FROM user_interests, interests 
+				WHERE user_id=:user and
+				interest_id = id ";
+
 		$q = $con->prepare($sql);
 		$q->execute(array(':user' => $view));
 		$rows = $q->fetchAll();

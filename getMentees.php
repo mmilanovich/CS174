@@ -1,16 +1,17 @@
 <?php
 	session_start();
-	$userID = $_SESSION['username'];
+	
+	$view = $_POST ['viewprofile'];
 	
 	try {
 		$con = new PDO("mysql:host=localhost;dbname=MentorWeb", "root", "root");
 		$con->setAttribute(PDO::ATTR_ERRMODE,
 						   PDO::ERRMODE_EXCEPTION);
 						   
-		$sql = "SELECT mentee_user_id AS userID FROM mentor_mentee WHERE mentor_user_id=:user";
+		$sql = "SELECT mentee_user_id  FROM mentor_mentee WHERE mentor_user_id=:user";
 
 		$q = $con->prepare($sql);
-		$q->execute(array(':user' => $userID));
+		$q->execute(array(':user' => $view));
 		$rows = $q->fetchAll();
 		if (count($rows) == 0) {
 			echo 'no classes';

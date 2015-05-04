@@ -165,7 +165,7 @@ include('interestFunctions.php');
             <li><a href="pg1.html">About Us</a></li>
             <li><a href="pg2.html">Contact Us</a></li>
             <li><a href="pg3.html">Donate</a></li>
-            <li><a href="contacts.html"> My Connections</a></li>
+            <li><a href="connection.php"> My Connections</a></li>
         </ul>
         </div>
         <div class="menuBar">
