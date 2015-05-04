@@ -27,20 +27,27 @@ function addUserInterest($username, $interest)
       $con = new PDO("mysql:host=localhost;dbname=MentorWeb", "root", "root");
       $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
       
-      // Add a new interest & 
-      // Add into user's list of interest
-      $query = "INSERT INTO `MentorWeb`.`user_interests` (`user_id`, `interest_id`) 
+
+      // Validation does not works  because of header line
+      // on addInterest.php it will redirects to profilePage.php
+      // without showing an error. More over, no duplicate will be allowed
+      //if(checkInterestExist($username, $interest) == false)
+      //{
+         $query = "INSERT INTO `MentorWeb`.`user_interests` (`user_id`, `interest_id`) 
                 SELECT :username, interests.id
                 FROM interests
                 WHERE interest = :interest";
 
-      $ps = $con->prepare($query);
-      $ps->bindParam(':username', $username);
-      $ps->bindParam(':interest', $interest);
-      $ps->execute();
-      header('Location: profilePage.php'); 
+         $ps = $con->prepare($query);
+         $ps->bindParam(':username', $username);
+         $ps->bindParam(':interest', $interest);
+         $ps->execute();
+         header('Location: profilePage.php'); 
+      //}
+      printf("<p>This shoud not print out</p>");
+      // goes here, so it's true, they think it exist
    } catch(PDOException $ex) {
-      echo "<p>Failed to add interest</p> $ex";
+      echo "<p>Failed to add interest to user</p> $ex";
    }
 
 }
@@ -62,11 +69,47 @@ function addInterest($interest)
          $ps->execute();
          header('Location: profilePage.php'); 
       }
+
+      //$check = checkInterestExist($interest);
+      //printf("Some random");
+      //printf("<p> checking : $check </p>");
+      //printf("Not adding");
    } catch(PDOException $ex) {
       echo "<p>Failed to add interest</p> $ex";
    }
 
 }
+
+
+// Not correctly implement but currently not used
+function checkUserInterestExist($username, $interest)
+{
+   //$interest = $_GET['interest'];
+   try {
+      $con = new PDO("mysql:host=localhost;dbname=MentorWeb", "root", "root");
+      $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+      
+      $interest_id = getInterestID($interest);
+      // Add a new interest & 
+      // Add into user's list of interest
+      $query = "SELECT user_id FROM user_interests WHERE interest_id = :interest_id";
+
+
+      $ps = $con->prepare($query);
+      $ps->bindParam(':interest_id', $interest_id);
+      $ps->execute();
+      $data = $ps->fetchALL(PDO::FETCH_ASSOC);
+      // should not have any value
+      if (count($data) == 0) 
+         return false;
+      else
+         return true;
+   } catch(PDOException $ex) {
+      echo "<p>Failed to add interest</p> $ex";
+   }
+
+}
+
 
 function checkInterestExist($interest)
 {
@@ -77,14 +120,17 @@ function checkInterestExist($interest)
       
       // Add a new interest & 
       // Add into user's list of interest
-      $query = "SELECT interest FROM interests WHERE interest = :interest";
+
+
+      $interest_id = getInterestID($interest);
+      $query = "SELECT interest FROM interests WHERE id = :interest_id";
 
       $ps = $con->prepare($query);
-      $ps->bindParam(':interest', $interest);
+      $ps->bindParam(':interest_id', $interest_id);
       $ps->execute();
       $data = $ps->fetchALL(PDO::FETCH_ASSOC);
 
-      if (count($rows) == 0) 
+      if (count($data) == 0) 
          return false;
       else
          return true;

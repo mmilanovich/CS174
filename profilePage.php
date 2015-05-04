@@ -99,36 +99,21 @@ include('interestFunctions.php');
       	<p class="userInfo"> Username : <?php echo $username; ?> </p>
         <p class="userInfo"> I'm a : <?php printf("$mentorString,  $menteeString")?> </p>
         <p class="userInfo"> Looking for a match : <?php echo $lookingForMatchString?></p>
-        
-        <?php
-        $data = myInterest($username);
-        //print_r($data);
-        // We're going to construct an HTML table.
-                print "<table border='1'>\n";
-                print "
-                <tr>
-                  <td>My Interest</td>
-                <tr>
-                ";
-                
-                // Construct the HTML table row by row.
-                foreach ($data as $row) { 
-                    print "            <tr>\n";
-                    
-                    foreach ($row as $name => $value) {
-                          $interestName = getInterestName($value);
-
-                        print "<td>$interestName</td>\n";
-                    }
-                    
-                    print "            </tr>\n";
-                }
+        <p class="userInfo"> My interest : 
+        <?php 
+          $data = myInterest($username);
+          foreach($data as $row)
+          {
+            foreach($row as $name => $value)
+            {
+              $interestName = getInterestName($value);
+              print " $interestName,";
+            }
+          }
 
 
 
-                
-                print "        </table>\n<br>";
-        ?>
+        ?></p>
 
         <form action="removeInterest.php" method="get">
         <fieldset>
