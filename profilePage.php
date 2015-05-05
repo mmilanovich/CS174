@@ -36,12 +36,11 @@ include('mentorMenteeFunctions.php');
 <div class="row">
 	<div class="col-lg-10 col-lg-offset-1 "><br>
 		<a href="index.php" class="btn btn-primary btn-block">
-   		 <span class="glyphicon glyphicon-arrow-left"></span> Logout </a><br>
- 	 	 <h1 style="color:white; background:#337ab7; text-align:center;"> theMentorWeb</h1>
-		<div class="panel panel-primary">
-			<div class="panel-heading"> <h2> Dashboard </h2></div> 
-			
-			<div class="panel-body"> 
+   		 <span class="glyphicon glyphicon-arrow-left"></span> Logout </a>
+ 	 	 <button class="btn btn-primary btn-block"> <h1 style="color:white; text-align:center;"> theMentorWeb Dashboard</h1></button>
+		 
+		
+			<br>
 				<div class="col-md-4">
 					 <div class="panel panel-primary">
 			 			<div class="panel-heading"><h4>Find a mentor or mentee</h4></div>
@@ -50,7 +49,7 @@ include('mentorMenteeFunctions.php');
 							 	<div class="input-group">  
 	      							<input type="text" class="form-control" name="interest" placeholder="Search for an interest...">
 	      							<span class="input-group-btn">
-	        						<button type="submit" class="btn btn-default" type="button">Go!</button>
+	        						<button type="submit" class="btn btn-success" type="button">Go!</button>
 	      							</span>		  
 	    						</div>
 	    					 </form>
@@ -66,7 +65,7 @@ include('mentorMenteeFunctions.php');
 							 	<div class="input-group">  
 	      							<input type="text" class="form-control" name="interest" placeholder="Name of an interest...">
 	      							<span class="input-group-btn">
-	        						<button type="submit" class="btn btn-default" type="button">Add it!</button>
+	        						<button type="submit" class="btn btn-success" type="button">Add it!</button>
 	      							</span>		  
 	   			   				</div>
 	    					 </form>
@@ -80,7 +79,7 @@ include('mentorMenteeFunctions.php');
 				<div class="panel-heading"><h4> More Functions</h4></div> 
 			<div class="panel-body"> 
 				<div class="menuBar">
-       				 <a href="menu1.html" class="menuLink" style="background:#337ab7;">More<span class="caret"></span></a>
+       				 <a href="menu1.html" class="menuLink" style="background:#5cb85c;">More<span class="caret"></span></a>
        				 <ul class="menu" id="menu1">
            				<li><a href="connection.php" class="btn btn-primary btn-block"> My Connections</a></li>
            				<li><a href="message.html"	class="btn btn-primary btn-block">Message A Contact <a/></li>
@@ -110,7 +109,7 @@ include('mentorMenteeFunctions.php');
 				
 				
 				
-	<div class="col-md-8   ">
+	<div class="col-md-8">
 		<div class="panel panel-primary">
 			<div class="panel-heading"> 
 				<h2><?php printf("$firstName $lastName")?></h2>
@@ -143,6 +142,7 @@ include('mentorMenteeFunctions.php');
 				</p>
 			</div>    
 		</div>
+	</div>
 		
         <?php
         if($mentor == 0)
@@ -160,10 +160,10 @@ include('mentorMenteeFunctions.php');
         else
           $lookingForMatchString = "Yes";
         ?>
-
+	<div class="col-md-4">
 		<div class="panel panel-primary">
-			<div class="panel-heading">Your Info</div> 
-			<div class="panel-body"> 
+			<div class="panel-heading "><h4>Your Info</h4></div> 
+			<div class="panel-body" id="below"> 
 				<p class="bg-info"> Username : <?php echo $username; ?> </p>
         		<p class="bg-info"> I'm a : <?php printf("$mentorString,  $menteeString")?> </p>
         		<p class="bg-info"> Looking for a match : <?php echo $lookingForMatchString?></p>
@@ -200,33 +200,9 @@ include('mentorMenteeFunctions.php');
        				 ?> </p>
 			</div>    
 		</div>
-	
-      	
-      
-      
-      
-     
-       	
-      	
-
-        
-        
-
-        
-
-
-
-
-       
-  
-      </div>
-      
-    </div>
-
-
-
-    
-  </div>
+	</div>
+</div>
+</div>
   <?php include 'registerThankYou.html' ;
   echo "<p>" . $_SERVER['HTTP_REFERER'] . "</p>";
   ?>
@@ -235,6 +211,7 @@ include('mentorMenteeFunctions.php');
   <script src="js/jquery.scrollTo.js"></script>
   <script src="js/wow.min.js"></script>
   <script src="js/custom.js"></script>
+  
 </body>
 
 
