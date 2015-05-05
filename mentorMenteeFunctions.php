@@ -151,11 +151,7 @@ function getMentorUsername($myUsername)
       $ps->bindParam(':myUsername', $myUsername);
       $ps->execute();
       $data = $ps->fetchALL(PDO::FETCH_ASSOC);
-      
-      $mentorUsername = null;
-      if($data != null)
-         $mentorUsername = $data[0]['mentor_user_id'];
-      return $mentorUsername;
+      return $data;
    }
    catch(PDOException $ex) {
       echo "<p>Failed to getInterestID()</p> $ex";
@@ -174,11 +170,7 @@ function getMenteeUsername($myUsername)
       $ps->bindParam(':myUsername', $myUsername);
       $ps->execute();
       $data = $ps->fetchALL(PDO::FETCH_ASSOC);
-
-      $menteeUsername = null;
-      if($data != null)
-         $menteeUsername = $data[0]['mentee_user_id'];
-      return $menteeUsername;
+      return $data;
    }
    catch(PDOException $ex) {
       echo "<p>Failed to getInterestID()</p> $ex";

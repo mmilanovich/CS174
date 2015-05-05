@@ -33,6 +33,7 @@
 			if (checkIfUserExists($_POST['username']) == 0) {
                 echo "made it this far";
 		    	adduser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch);
+				$_SESSION['username'] = $username;
 				header('Location: profilePage.php');
 			}	
                         
