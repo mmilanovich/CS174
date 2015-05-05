@@ -307,7 +307,11 @@
 	html += "<hr>";
 	html += "<h4 style= 'background: #5bc0de; '><strong><em>Average Rating</strong></em></h4><br>";
 	$.each(data, function(index, data) {
-		html += "<p class='user bg-info'>" + data.stars + " with a total of " + data.count + " reviews</p>";
+		if (data.stars == null) {
+			html += "<p class='user bg-info'> No reviews</p>";
+		} else {
+			html += "<p class='user bg-info'>" + data.stars + " with a total of " + data.count + " reviews</p>";
+		}
 	});
 	
 	$('#profilebody').append(html);
