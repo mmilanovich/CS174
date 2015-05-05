@@ -40,44 +40,53 @@
     <script src="js/jquery.min.js"></script>
 </head>
 
-<body>
-	<h1 class="t" >Mentors</h1>
-	<?php
-	for ($i = 0; $i < count($names); $i++) {
-		if ($names[$i]["mentor"] == 1) {
-			echo '<form action="AddConnection.php" method="POST">
+<body style="background-image: url('photos/connection.jpg');">
+<div class="row"><br>	
+	<div class="col-lg-10  col-lg-offset-1">
+		<a href="profilePage.php" class="btn btn-primary btn-block">
+   		 <span class="glyphicon glyphicon-arrow-left"></span> Back
+ 		</a>
+ 		<h1 style="color:white; background:#337ab7; text-align:center;">Add Connections</h1>
+	<div class="panel panel-primary">
+		<div class="panel-heading"><h2>Mentors</h2></div>
+		<div class="panel-body">
+			<?php
+				for ($i = 0; $i < count($names); $i++) {
+				if ($names[$i]["mentor"] == 1) {
+				echo '<form action="AddConnection.php" method="POST">
 				<input type="hidden" name="mentor" value="'.$names[$i]["username"].'">
 				<input type="hidden" name="mentee" value="'.$username.'">
 				<button  type="submit" name="submitMatch" class="btn btn-info viewprofile"><span class="glyphicon glyphicon-user"></span>
-            Match me with '.$names[$i]["username"].'</button></form>';
-		}
-	}
+           		 Match me with '.$names[$i]["username"].'</button></form>';
+					}
+				}			
 	
-	?>
-	<h1>Mentees</h1>
-	<?php
-	for ($i = 0; $i < count($names); $i++) {
-		if ($names[$i]["mentee"] == 1) {
-			echo '<form action="AddConnection.php" method="POST">
+			?>
+		</div>
+	</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-10  col-lg-offset-1">
+	<div class="panel panel-primary">
+		<div class="panel-heading"><h2>Mentees</h2></div>
+		<div class="panel-body">
+			<?php
+				for ($i = 0; $i < count($names); $i++) {
+				if ($names[$i]["mentee"] == 1) {
+				echo '<form action="AddConnection.php" method="POST">
 				<input type="hidden" name="mentor" value="'.$username.'">
 				<input type="hidden" name="mentee" value="'.$names[$i]["username"].'">
 				<button  type="submit" name="submitMatch" class="btn btn-info viewprofile" 
 				data-name-n="'.$names[$i]["username"].'"><span class="glyphicon glyphicon-user"></span>
-            Match me with '.$names[$i]["username"].'</button></form>';
-		}
-	}
-	
-	
-	
-	?>
-	<script>
-		$(".viewprofile").on("click",function()
-		{
-			var t ="testing";
-			var test = $(this).data("name-n");
-			alert("hello--"+test+t);
-		});
-	</script>
+            	Match me with '.$names[$i]["username"].'</button></form>';
+					}
+				}
+			?>
+		</div>
+	</div>
+	</div>
+</div>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.min.js"></script> 
     <script src="js/jquery.scrollTo.js"></script>

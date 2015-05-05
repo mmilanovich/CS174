@@ -176,7 +176,7 @@ function getMenteeUsername($myUsername)
       $data = $ps->fetchALL(PDO::FETCH_ASSOC);
 
       $menteeUsername = null;
-      if($menteeUsername != null)
+      if($data != null)
          $menteeUsername = $data[0]['mentee_user_id'];
       return $menteeUsername;
    }

@@ -11,23 +11,33 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/message.js"></script>
 </head>
-<body>
-	<h1>Messanger</h1>
-		<a href="profilePage.php" id="backbutton" class="btn btn-default">Back to Profile</a>
-	<br>
-	<div id="dropdown" class="dropdown">
-		<select id="contactList" class="form-control">
-		</select>
-	</div>	
-	<br>
-	<div class="form-group">
-		<label for="comment">Message Body:</label>
-		<textarea id="messageBody" class="form-control" rows="5" id="comment"></textarea>
+
+<body style="background-image: url('photos/connection.jpg');">
+<div class="row"><br>	
+	<div class="col-lg-10  col-lg-offset-1">
+		<a href="profilePage.php" class="btn btn-primary btn-block">
+   		 <span class="glyphicon glyphicon-arrow-left"></span> Back </a><br>
+		
+		<div class="panel panel-primary">
+			<div  class="panel-heading"><h2 style="text-align:center;">Messages</h2></div>
+			<div class="panel-body">
+				<div id="dropdown" class="dropdown">
+					<h3><span class="label label-info">Select Contact:</span></h3>
+		 			 <select id="contactList" class="form-control">
+		 			 </select>
+				</div>	<br>
+				<div class="form-group">
+		 			 <h3><span class="label label-info">Message Body:</span></h3>
+		 			 <textarea id="messageBody" class="form-control" rows="5" id="comment"></textarea>
+				</div>
+				<button class="btn btn-block btn-primary" onclick="sendMessage()" type="button">Send</button><br>
+				<div  id="messages">	</div>
+			</div>
+		<br>
+		<br>
+	   	
 	</div>
-	<button class="btn btn-default" onclick="sendMessage()" type="button">Send</button>
-	<br>
-	<br>
-	<div id="messages">
-	</div>
+</div>
+
 </body>
 </html>

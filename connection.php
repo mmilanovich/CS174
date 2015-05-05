@@ -55,6 +55,7 @@
  	 	 </a>
  	 	 <button class="btn btn-primary btn-block" id="clear" onclick = location.reload();>
    		 	<span class="glyphicon glyphicon-off"></span> Close Profile
+
  	 	 </button>
  	 	
 		 <h1 style="color:white; background:#337ab7; text-align:center;">My Connections</h1>
