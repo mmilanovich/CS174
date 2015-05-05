@@ -122,49 +122,15 @@ include('mentorMenteeFunctions.php');
             printf("$mentorUsername"); 
 
         ?> </p>
+
         <p class="userInfo"> My mentee : 
         <?php
           $menteeUsername = getMenteeUsername($username);
           if($menteeUsername == null)
             printf("None");
           else
-            printf("$mentorUsername"); 
+            printf("$menteeUsername"); 
         ?> </p>
-
-        <form action="unmatchmentor.php" method="get">
-        <fieldset>
-            <p>
-                <input type="submit" value="Unmatch me with my mentor">
-            </p>
-        </fieldset>
-        </form>
-
-        <form action="unmatchmentee.php" method="get">
-        <fieldset>
-            <p>
-                <input type="submit" value="Unmatch me with my mentee">
-            </p>
-        </fieldset>
-        </form>
-
-
-        <form action="removeInterest.php" method="get">
-        <fieldset>
-            <legend>Remove one of my interest</legend>
-            <p>
-                <label>Interest : </label>
-                <input name="interest" type="text">
-            </p>
-            
-            <p>
-                <input type="submit" value="Submit">
-            </p>
-        </fieldset>
-        </form>
-
-
-
-
 
       </div>
       
@@ -193,19 +159,42 @@ include('mentorMenteeFunctions.php');
             <li><a href="pg7.html">Twitter</a></li>
         </ul>
         </div>
+
         <div class="menuBar">
         <a href="menu3.html" class="menuLink"><?php printf("$firstName $lastName")?></a>
         <ul class="menu" id="menu3">
             <li><a href="pg8.html">Find a Match</a></li>
-            <li><a href="pg9.html">Update Status</a></li>
-            <li><a href="pg9.html">Log Out</a></li>
+            <li><a href="removeInterest.html">Remove an Interest</a></li>
+            <?php
+            $mentorUsername = getMentorUsername($username);
+              if($mentorUsername == null)
+                printf("");
+              else
+                printf("<li><a href='unmatchmentor.php'>Unmatch me with Mentor $mentorUsername</li> ");
+
+            $menteeUsername = getMenteeUsername($username);
+              if($menteeUsername == null)
+                printf("");
+              else
+                printf("<li><a href='unmatchmentee.php'>Unmatch me with mentee $menteeUsername</li> ");
+            ?>
+            <li><a href='lookingForMatch.php'>Update Looking for match</a></li>
+            <li><a href='changeMentorStatus.php'>Toogle Mentor Status</a></li>
+            <li><a href='changeMenteeStatus.php'>Toogle Mentee Status</a></li>
+
+
+
+
+
+            <li><a href="index.php">Log out</a></li>
         </ul>
         </div>
       </div>
       
     </div>
-    
-    
+
+
+
     
   </div>
   <?php include 'registerThankYou.html' ;
