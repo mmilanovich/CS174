@@ -2,7 +2,21 @@
 include('session.php');
 include('interestFunctions.php');
 include('mentorMenteeFunctions.php');
-
+include('bioModal.php');
+try {
+                $con = new PDO("mysql:host=localhost;dbname=MentorWeb", "root", "root");
+                $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+                
+                // Add a new interest & 
+                // Add into user's list of interest
+                $query = "SELECT bio from userdata where username = '$username'";
+                $ps = $con->prepare($query);
+                $ps->execute();
+                $data = $ps->fetchALL(PDO::FETCH_ASSOC);
+                print_r ($data);
+                } catch(PDOException $ex) {
+    echo "<p>Connection failed</p> $ex";
+  }
 ?>
 <html>
 <head>
@@ -24,10 +38,14 @@ include('mentorMenteeFunctions.php');
             $('#thankYouModal').modal('show');
             setTimeout(function() { $('#thankYouModal').modal('hide'); }, 2000);
           }
-          
-
+          /*$("#editBio").on("click", function () {
+            
+            $("#bioDiv > p#bio").html('<form action="saveBio.php" method="POST"><textarea id="bioText" name="bioText" rows="10" cols="80">' +  $("#bioDiv >p#bio").html() +'</textarea><button type="submit "id="saveBio" name="saveBio" class="btn btn-success" type="button">Save Bio</button></form>');
+            return false;
+          });*/
       });
 
+      
       
   </script>
 </head>
@@ -115,30 +133,12 @@ include('mentorMenteeFunctions.php');
 				<h2><?php printf("$firstName $lastName")?></h2>
 				<h3 class="special">Biography</h3>
 			</div> 
-			<div class="panel-body"> 
+			<div id="bioDiv" class="panel-body"> 
+        <a href="#bioModal" data-toggle="modal" data-target="#bioModal"><Strong>Edit Bio</Strong></a>
 				<img src="http://newarkpatrioticfund.co.uk/wp-content/uploads/2014/05/profile-placeholder.jpg"></img>
-        		<p class="bg-info">
-        		Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-        		Aliquid cum quasi nulla molestias accusamus 
-        		aspernatur reiciendis qui optio tenetur modi repellendus 
-        		distinctio dolore nesciunt. Repellat provident explicabo 
-       			 accusamus autem perspiciatis. Lorem ipsum dolor sit amet,
-         		consectetur adipisicing elit. Esse architecto modi ratione 
-         		porro magnam explicabo! Porro dolore aut nam sed officiis 
-         		dolores unde quo nostrum vero earum error ipsum cumque? 
-         		Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-         		Facere aliquam explicabo sapiente doloremque perspiciatis
-         		 qui iste ipsa consectetur suscipit eum totam laborum quidem quam sint ducimus fugit dolorem illum doloribus!
-	    		Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-	   			 Aliquid cum quasi nulla molestias accusamus aspernatur 
-	    		reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. 
-	    		Repellat provident explicabo accusamus autem perspiciatis. 
-	    		Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-	    		Esse architecto modi ratione porro magnam explicabo! 
-	    		Porro dolore aut nam sed officiis dolores unde quo nostrum vero earum error ipsum cumque? 
-	   			Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-	    		Facere aliquam explicabo sapiente doloremque perspiciatis qui iste ipsa consectetur suscipit eum totam
-	     		laborum quidem quam sint ducimus fugit dolorem illum doloribus!
+        		<p id="bio" class="bg-info">
+        		<?php $cu = $data[0];
+            print_r($cu['bio']);?>
 				</p>
 			</div>    
 		</div>
@@ -162,8 +162,13 @@ include('mentorMenteeFunctions.php');
         ?>
 	<div class="col-md-4">
 		<div class="panel panel-primary">
-			<div class="panel-heading "><h4>Your Info</h4></div> 
+			<div class="panel-heading ">
+        <h4>Your Info
+            
+          </h4>
+      </div> 
 			<div class="panel-body" id="below"> 
+
 				<p class="bg-info"> Username : <?php echo $username; ?> </p>
         		<p class="bg-info"> I'm a : <?php printf("$mentorString,  $menteeString")?> </p>
         		<p class="bg-info"> Looking for a match : <?php echo $lookingForMatchString?></p>
@@ -206,6 +211,8 @@ include('mentorMenteeFunctions.php');
   <?php include 'registerThankYou.html' ;
   echo "<p>" . $_SERVER['HTTP_REFERER'] . "</p>";
   ?>
+  <?php include 'editProfileModal.php' ?>
+
   <script src="js/bootstrap.min.js"></script>
   <script src="js/jquery.easing.min.js"></script> 
   <script src="js/jquery.scrollTo.js"></script>
