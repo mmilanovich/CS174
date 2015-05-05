@@ -220,9 +220,7 @@
             <ul class="nav navbar-nav clearfix">
                     
                     <li><a href="#registerModal" data-toggle="modal" data-target="#registerModal"><Strong>Register</Strong></a></li>
-                    <li><a href="http://www.google.com"><Strong>Help</Strong></a></li>
-                    <li><a href="#"><Strong>About Us</Strong></a></li>
-                    </ul></span>
+            </ul></span>
                
           </form>
           </div>
