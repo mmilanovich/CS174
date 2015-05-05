@@ -18,6 +18,7 @@ function myMentors($username)
       $ps->bindParam(':interest', $interest);
       $ps->execute();
       $data = $ps->fetchALL(PDO::FETCH_ASSOC);
+      return $data;
 
       header('Location: index.html'); 
    } catch(PDOException $ex) {
@@ -42,7 +43,8 @@ function myMentees($interest)
       $ps->bindParam(':interest', $interest);
       $ps->execute();
       $data = $ps->fetchALL(PDO::FETCH_ASSOC);
-      
+      return $data;
+
       header('Location: index.html'); 
    } catch(PDOException $ex) {
       echo "<p>Failed to add interest</p> $ex";
@@ -112,22 +114,24 @@ function updateLookingForMatch($username, $indicator)
    }
 }
 
-// Not Done yet
+
 function getMentorMenteeInterest($myUsername,$partnerUsername)
 {
    try{
       $con = new PDO("mysql:host=localhost;dbname=MentorWeb", "root", "root");
       $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-      $query = "SELECT mentor_user_id from mentor_mentee WHERE mentee_user_id = :myUsername";
+      $query = "SELECT interest  
+            FROM user_interests, interests 
+            WHERE user_id=:user and
+            interest_id = id ";
       
       $ps = $con->prepare($query);
       $ps->bindParam(':myUsername', $myUsername);
       $ps->execute();
       $data = $ps->fetchALL(PDO::FETCH_ASSOC);
 
-      $interest = $data[0]['mentor_user_id'];
-      return $mentorUsername;
+      return $data;
    }
    catch(PDOException $ex) {
       echo "<p>Failed to getInterestID()</p> $ex";
@@ -147,8 +151,10 @@ function getMentorUsername($myUsername)
       $ps->bindParam(':myUsername', $myUsername);
       $ps->execute();
       $data = $ps->fetchALL(PDO::FETCH_ASSOC);
-
-      $mentorUsername = $data[0]['mentor_user_id'];
+      
+      $mentorUsername = null;
+      if($data != null)
+         $mentorUsername = $data[0]['mentor_user_id'];
       return $mentorUsername;
    }
    catch(PDOException $ex) {
@@ -169,8 +175,46 @@ function getMenteeUsername($myUsername)
       $ps->execute();
       $data = $ps->fetchALL(PDO::FETCH_ASSOC);
 
-      $menteeUsername = $data[0]['mentee_user_id'];
+      $menteeUsername = null;
+      if($menteeUsername != null)
+         $menteeUsername = $data[0]['mentee_user_id'];
       return $menteeUsername;
+   }
+   catch(PDOException $ex) {
+      echo "<p>Failed to getInterestID()</p> $ex";
+   }
+}
+
+function unmatchMeWithMentor($myUsername)
+{
+   try{
+      $con = new PDO("mysql:host=localhost;dbname=MentorWeb", "root", "root");
+      $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+      $query = "DELETE FROM `MentorWeb`.`mentor_mentee` 
+      WHERE `mentor_mentee`.`mentee_user_id` = :myUsername";
+
+      $ps = $con->prepare($query);
+      $ps->bindParam(':myUsername', $myUsername);
+      $ps->execute();
+   }
+   catch(PDOException $ex) {
+      echo "<p>Failed to getInterestID()</p> $ex";
+   }
+}
+
+function unmatchMeWithMentee($myUsername)
+{
+   try{
+      $con = new PDO("mysql:host=localhost;dbname=MentorWeb", "root", "root");
+      $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+      $query = "DELETE FROM `MentorWeb`.`mentor_mentee` 
+      WHERE `mentor_mentee`.`mentor_user_id` = :myUsername";
+
+      $ps = $con->prepare($query);
+      $ps->bindParam(':myUsername', $myUsername);
+      $ps->execute();
    }
    catch(PDOException $ex) {
       echo "<p>Failed to getInterestID()</p> $ex";

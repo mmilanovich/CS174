@@ -1,6 +1,7 @@
 <?php
 include('session.php');
 include('interestFunctions.php');
+include('mentorMenteeFunctions.php');
 
 ?>
 <html>
@@ -110,10 +111,42 @@ include('interestFunctions.php');
               print " $interestName,";
             }
           }
-
-
-
         ?></p>
+
+        <p class="userInfo"> My mentor : 
+        <?php 
+          $mentorUsername = getMentorUsername($username);
+          if($mentorUsername == null)
+            printf("None");
+          else
+            printf("$mentorUsername"); 
+
+        ?> </p>
+        <p class="userInfo"> My mentee : 
+        <?php
+          $menteeUsername = getMenteeUsername($username);
+          if($menteeUsername == null)
+            printf("None");
+          else
+            printf("$mentorUsername"); 
+        ?> </p>
+
+        <form action="unmatchmentor.php" method="get">
+        <fieldset>
+            <p>
+                <input type="submit" value="Unmatch me with my mentor">
+            </p>
+        </fieldset>
+        </form>
+
+        <form action="unmatchmentee.php" method="get">
+        <fieldset>
+            <p>
+                <input type="submit" value="Unmatch me with my mentee">
+            </p>
+        </fieldset>
+        </form>
+
 
         <form action="removeInterest.php" method="get">
         <fieldset>
@@ -126,11 +159,11 @@ include('interestFunctions.php');
             <p>
                 <input type="submit" value="Submit">
             </p>
-            
-            
-            
         </fieldset>
-    </form>
+        </form>
+
+
+
 
 
       </div>
@@ -138,7 +171,6 @@ include('interestFunctions.php');
       
       <div class="secondary">
         <h2>Side Menu</h2>
-        <p><a href="updateInterest"> <font color="red">Click here to update my interest!</p>
         <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
       	</p>

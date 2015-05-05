@@ -10,7 +10,7 @@
 				VALUES ('$mentor', '$mentee')";
 		$q = $con->prepare($sql);
 		$q->execute();
-		header('Location: profilePage.html'); 
+		header('Location: profilePage.php'); 
 	} catch(PDOException $ex) {
 		echo "<p>Connection failed</p> $ex";
 	}
