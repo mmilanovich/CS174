@@ -122,8 +122,9 @@
 			getMentors();
 			getMentees();
 			getInterest();
+			getAverageRating();
 			getSpecificReview();
-			getAllReviews();
+			getAllReviews();		
 			});
 			
 			function getPersonalInfo(){
@@ -208,6 +209,20 @@
 				
 			}
 			
+			function getAverageRating(){
+			
+			$.ajax({
+	   			type: "POST",
+       			url: "getAverageRating.php",
+				dataType: "json",
+				data: "viewprofile=" + viewname,
+				success: function(data){
+					buildAverageRatingElement(data);
+           		}
+    		});	
+				
+			}
+			
 			
 			function buildViewProfile(data){
 				
@@ -224,7 +239,7 @@
 				newhtml += " Mentor Status:		"+ data.mentor+"<br>";
 				newhtml += " Mentee Status:		"+ data.mentee+"<br>";
 				newhtml += " Looking for Match:		"+data.lookingForMatch+"</p>"; 
-				newhtml += "<hr><br>";
+				newhtml += "<hr>";
 				newhtml += "<h4 style= 'background: #5bc0de; '><strong><em> Connections</strong></em></h4><br>";
 			
 			
@@ -286,6 +301,17 @@
 		$('#profilebody').append(html);
 	}
 	
+	function buildAverageRatingElement(data){
+	//alert(viewname);
+	var html = "";
+	html += "<hr>";
+	html += "<h4 style= 'background: #5bc0de; '><strong><em>Average Rating</strong></em></h4><br>";
+	$.each(data, function(index, data) {
+		html += "<p class='user bg-info'>" + data.stars + " with a total of " + data.count + " reviews</p>";
+	});
+	
+	$('#profilebody').append(html);
+	}
 	
 	function buildReviewList(data) {
 		var html = "<hr>";
