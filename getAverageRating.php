@@ -1,7 +1,6 @@
 <?php
 	session_start();
-	//$reviewee = $_POST['viewprofile'];
-	$reviewee = 'gary';
+	$reviewee = $_POST['viewprofile'];
 	try {
 		$con = new PDO("mysql:host=localhost;dbname=MentorWeb", "root", "root");
 		$con->setAttribute(PDO::ATTR_ERRMODE,
