@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `userdata` (
   `lastName` char(45) DEFAULT NULL,
   `mentor` tinyint(1) DEFAULT NULL,
   `mentee` tinyint(1) DEFAULT NULL,
+  `bio` varchar(1000) DEFAULT NULL,
   `lookingForMatch` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
