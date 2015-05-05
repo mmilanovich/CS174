@@ -100,20 +100,28 @@ try {
        				 <a href="menu1.html" class="menuLink" style="background:#5cb85c;">More<span class="caret"></span></a>
        				 <ul class="menu" id="menu1">
            				<li><a href="connection.php" class="btn btn-primary btn-block"> My Connections</a></li>
-           				<li><a href="message.html"	class="btn btn-primary btn-block">Message A Contact <a/></li>
+           				<li><a href="message.html"	class="btn btn-primary btn-block">Message A Contact </a></li>
            				<li><a href="removeInterest.html" class="btn btn-primary btn-block">Remove an Interest</a></li>
            					<?php
-           						 $mentorUsername = getMentorUsername($username);
-              						if($mentorUsername == null)
-               					 printf("<li><a href='#' class='btn btn-block btn-primary'> No Mentor Connection!</li>");
-             					 else
-                				printf("<li><a href='unmatchmentor.php' class='btn btn-block btn-primary'>Unmatch me with Mentor $mentorUsername</li> ");
-
-            					$menteeUsername = getMenteeUsername($username);
-              					if($menteeUsername == null)
-                				printf("<li><a href='#'class='btn btn-block btn-primary'> No Mentee Connection!</li>");
-              					else
-               				    printf("<li><a href='unmatchmentee.php' class='btn btn-block btn-primary'>Unmatch me with mentee $menteeUsername</li> ");
+           						$mentorUsernameArray = getMentorUsername($username);
+              					
+								if ($mentorUsernameArray == null) {
+               						printf("<li><a href='#' class='btn btn-block btn-primary'> No Mentor Connection!</a></li>");
+								} else {
+									for ($i = 0; $i < count($mentorUsernameArray); $i++) {
+										printf("<li><a href='unmatchmentor.php' class='btn btn-block btn-primary'>Unmatch me with Mentor ".$mentorUsernameArray[$i]['mentor_user_id']."</a></li> ");
+									}
+                					
+								}
+            					
+								$menteeUsernameArray = getMenteeUsername($username);
+              					if ($menteeUsernameArray == null) {
+                					printf("<li><a href='#'class='btn btn-block btn-primary'> No Mentee Connection!</a></li>");
+              					} else {
+									for ($i = 0; $i < count($menteeUsernameArray); $i++) {
+               				    		printf("<li><a href='unmatchmentee.php' class='btn btn-block btn-primary'>Unmatch me with mentee ".$menteeUsernameArray[$i]['mentee_user_id']."</a></li> ");
+									}
+								}
             				?>
             			<li><a href='lookingForMatch.php'	class="btn btn-block btn-primary">Update Looking for match</a></li>
             			<li><a href='changeMentorStatus.php'	class="btn btn-block btn-primary">Toogle Mentor Status</a></li>
@@ -172,36 +180,53 @@ try {
 				<p class="bg-info"> Username : <?php echo $username; ?> </p>
         		<p class="bg-info"> I'm a : <?php printf("$mentorString,  $menteeString")?> </p>
         		<p class="bg-info"> Looking for a match : <?php echo $lookingForMatchString?></p>
-       			<p class="bg-info"> My interest : 
+       			<p class="bg-info"> My interests : 
        				 <?php 
          				 $data = myInterest($username);
+						 $i = 0;
          				 foreach($data as $row)
           				{
            					 foreach($row as $name => $value)
             				{
+								if ($i > 0) {
+									printf(", ");
+								}
               					$interestName = getInterestName($value);
-             					 print " $interestName,";
+             					 print " $interestName";
+								 $i++;
             				}
           				}
        				 ?></p>
 
-        		<p class="bg-info"> My mentor : 
+        		<p class="bg-info"> My mentors: 
         			<?php 
-          				$mentorUsername = getMentorUsername($username);
-         				 if($mentorUsername == null)
-            			printf("There is no mentor connection!");
-          				else
-           			    printf("$mentorUsername"); 
+          				$mentorUsernameArray = getMentorUsername($username);
+         				if($mentorUsernameArray == null) {
+            				printf("There is no mentor connection!");
+          				} else {
+							for ($i = 0; $i < count($mentorUsernameArray); $i++) {
+           			    		if ($i > 0) {
+           			    			printf(", ");
+           			    		}
+								printf($mentorUsernameArray[$i]['mentor_user_id']); 
+							}
+						}
 
         		?> </p>
 
-       			 <p class="bg-info"> My mentee : 
+       			 <p class="bg-info"> My mentees : 
         			<?php
-          				$menteeUsername = getMenteeUsername($username);
-         				 if($menteeUsername == null)
+          				$menteeUsernameArray = getMenteeUsername($username);
+         				if($menteeUsernameArray == null) {
           				  printf("There is no mentees connection!");
-          					else
-           				 printf("$menteeUsername"); 
+       					} else {
+							for ($i = 0; $i < count($menteeUsernameArray); $i++) {
+        			    		if ($i > 0) {
+        			    			printf(", ");
+        			    		}
+							printf($menteeUsernameArray[$i]['mentee_user_id']); 
+						}
+					}
        				 ?> </p>
 			</div>    
 		</div>
@@ -209,7 +234,7 @@ try {
 </div>
 </div>
   <?php include 'registerThankYou.html' ;
-  echo "<p>" . $_SERVER['HTTP_REFERER'] . "</p>";
+  //echo "<p>" . $_SERVER['HTTP_REFERER'] . "</p>";
   ?>
   <?php include 'editProfileModal.php' ?>
 
