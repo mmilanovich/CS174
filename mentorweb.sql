@@ -70,7 +70,21 @@ CREATE TABLE IF NOT EXISTS `userdata` (
 CREATE TABLE IF NOT EXISTS `messages` (
   `senderID` CHAR(20) NULL,
   `recipientID` CHAR(20) NULL,
-  `messageBody` VARCHAR(1000) NULL);
+  `messageBody` VARCHAR(1000) NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review`
+--
+
+CREATE TABLE IF NOT EXISTS `reviews` (
+  `reviewerID` CHAR(20) NULL,
+  `revieweeID` CHAR(20) NULL,
+  `stars` int(3) NULL,
+  `messageBody` VARCHAR(1000) NULL,
+  PRIMARY KEY (reviewerID, revieweeID)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

@@ -44,8 +44,6 @@
 		 });
 		
 		</script>
-		
-		
   		 
 </head>
 <body style="background-image: url('photos/connection.jpg');">
@@ -56,7 +54,7 @@
    		 <span class="glyphicon glyphicon-arrow-left"></span> Back
  	 	 </a>
  	 	 <button class="btn btn-primary btn-block" id="clear" onclick = location.reload();>
-   		 <span class="glyphicon glyphicon-off"></span> Clear Profile
+   		 	<span class="glyphicon glyphicon-off"></span> Close Profile
  	 	 </button>
  	 	
 		 <h1 style="color:white; background:#337ab7; text-align:center;">My Connections</h1>
@@ -123,6 +121,8 @@
 			getMentors();
 			getMentees();
 			getInterest();
+			getSpecificReview();
+			getAllReviews();
 			});
 			
 			function getPersonalInfo(){
@@ -179,29 +179,58 @@
 				
 			}
 			
+			function getSpecificReview(){
+			
+			$.ajax({
+	   			type: "POST",
+       			url: "getSpecificReview.php",
+				dataType: "json",
+				data: "viewprofile=" + viewname,
+				success: function(data){
+					buildSpecificReviewList(data);
+           		}
+    		});	
+				
+			}
+			
+			function getAllReviews(){
+			
+			$.ajax({
+	   			type: "POST",
+       			url: "getReviews.php",
+				dataType: "json",
+				data: "viewprofile=" + viewname,
+				success: function(data){
+					buildReviewList(data);
+           		}
+    		});	
+				
+			}
+			
 			
 			function buildViewProfile(data){
-			var html = "";
-			$.each(data, function(index, data){
-			var newhtml = "";
-			newhtml += "<div class='panel panel-Primary'>";
-			newhtml += "<div class='panel-heading' id='profileheader'><h4 style='text-align:center;'>"
-							+ data.username +"'s Profile"+"</h4></div>"; 
-			newhtml += "<div class= 'panel-body' id='profilebody'>";
-			newhtml += "<h4 style= 'background: #5bc0de; '><strong><em> Personal Info</strong></em></h4><br>";
-			newhtml += "<p class='bg-info'> "+" First Name:	"+  data.firstName+"<br>"
+				
+				var html = "";
+				$.each(data, function(index,data) {
+				var newhtml = "";
+				newhtml += "<div class='panel panel-Primary'>";
+				newhtml += "<div class='panel-heading' id='profileheader'><h4 style='text-align:center;'>"
+						+ data.username +"'s Profile"+"</h4></div>"; 
+				newhtml += "<div class= 'panel-body' id='profilebody'>";	
+				newhtml += "<h4 style= 'background: #5bc0de; '><strong><em> Personal Info</strong></em></h4><br>";
+				newhtml += "<p class='bg-info'> "+" First Name:	"+  data.firstName+"<br>"
 						+ "Last Name:		"+ data.lastName+"<br> ";
-			newhtml += " Mentor Status:		"+ data.mentor+"<br>";
-			newhtml += " Mentee Status:		"+ data.mentee+"<br>";
-			newhtml += " Looking for Match:		"+data.lookingForMatch+"</p>";
-			newhtml += "<hr><br>";
-			newhtml += "<h4 style= 'background: #5bc0de; '><strong><em> Connections</strong></em></h4><br>";
+				newhtml += " Mentor Status:		"+ data.mentor+"<br>";
+				newhtml += " Mentee Status:		"+ data.mentee+"<br>";
+				newhtml += " Looking for Match:		"+data.lookingForMatch+"</p>"; 
+				newhtml += "<hr><br>";
+				newhtml += "<h4 style= 'background: #5bc0de; '><strong><em> Connections</strong></em></h4><br>";
 			
 			
-			html = newhtml + html;
-			});
+				html = newhtml + html;
 			
-			$('#profileDiv').html(html)
+				});
+				$('#profileDiv').html(html)
 			 
 			}
 		
@@ -234,23 +263,64 @@
 	html += "<hr>";
 	html += "<h4 style= 'background: #5bc0de; '><strong><em> Interests</strong></em></h4><br>";
 	$.each(data, function(index, data) {
-		
 		html += "<p class='user bg-info'>" + data.interest + "</p>";
-		html += "</div></div>";
+		//html += "</div></div>";
 	});
 	
 	$('#profilebody').append(html);
 	}
+	
+	function buildSpecificReviewList(data){
+		var html = "<hr>";
+		html += "<h4 style= 'background: #5bc0de; '><strong><em>Your Review</strong></em></h4><br>";
+		html += "<div id='your_review'>";
+		if (data.length == 0) {
+			html += "<button id='reviewButton' data-messagebody='0' type='submit' class='btn btn-default' type='button' onclick='editReview()'>Edit Review</button></span>";
+		}
+		$.each(data, function(index, data) {
+			html += "<p class='user bg-info'>Stars: " + data.stars + "<br> Comments: " + data.messageBody + "</p>";
+			html += "<span class='input-group-btn'><button id='reviewButton' data-messagebody='" + data.messageBody + "' type='submit' class='btn btn-default' type='button' onclick='editReview()'>Edit Review</button></span>";
+		});	
+		html += "</div></div></div>";
+		$('#profilebody').append(html);
+	}
+	
+	
+	function buildReviewList(data) {
+		var html = "<hr>";
+		html += "<h4 style= 'background: #5bc0de; '><strong><em>Other Reviews</strong></em></h4><br>";
+		$.each(data, function(index, data) {
+			html += "<p class='user bg-info'><strong>Reviewer</strong>: " + data.reviewerID + ", <strong>Stars</strong>: " + data.stars + "<br> <strong>Comments</strong>: " + data.messageBody + "</p>";
+			html += "<hr>";
+		});	
+		$('#profilebody').append(html);
+	}
 
-
-
-		
-			
-		
-		
-		
-		
-		
+    function editReview() {
+   	 var messageBody = $('#reviewButton').attr("data-messagebody");
+   	 var html = "<div class='form-group'><label for='sel1'>Star Rating (select one):</label><select class='form-control' id='sel1'><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><br>";
+   	 html += "<textarea id='messageBody' class='form-control' rows='5' id='comment'> " 
+	 if (messageBody != '0') {
+		 html += messageBody;
+	 }
+	 html += "</textarea>";
+   	 html += "<button class='btn btn-default' onclick='submitReview()' type='button'>Submit</button>";
+   	 $('#your_review').html(html); 
+    }
+ 
+    function submitReview() {
+   	 	var stars = $('#sel1').val();
+   		var messageBody = $('#messageBody').val();
+   		$.ajax({
+   			type:"POST",
+   			url: "postReview.php",
+   			data: "viewprofile=" + viewname + "&stars=" + stars + "&messageBody=" + messageBody,
+   			dataType: "json",
+   			complete: function(data){
+   				$('#your_review').html("<p class='user bg-info'>Review posted, thanks for the feedback!</p>");
+   			}
+   		});
+   	}
 </script>
 
 </body>
