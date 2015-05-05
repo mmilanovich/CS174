@@ -1,7 +1,5 @@
-<html>
-<body>
 <?php
-	
+session_start();	
 	try {
 		$con = new PDO("mysql:host=localhost;dbname=mentorweb", "root", "root");
 		$con->setAttribute(PDO::ATTR_ERRMODE,
@@ -31,9 +29,9 @@
 			$firstName = $_POST['firstName'];
 			$lastName = $_POST['lastName'];
 			if (checkIfUserExists($_POST['username']) == 0) {
-                echo "made it this far";
+                $_SESSION['username'] = $username;
+				//echo "made it this far";
 		    	adduser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch);
-				$_SESSION['username'] = $username;
 				header('Location: profilePage.php');
 			}	
                         
@@ -45,7 +43,7 @@
 	
 function addUser($username, $password, $firstName, $lastName, $isMentor, $isMentee, $isLookingForMatch) {
 	global $con;
-        echo "made it this far into add";
+       // echo "made it this far into add";
 	$sql = "
 		INSERT INTO userdata (username, password, firstName, lastName, mentor, mentee, lookingForMatch)
 		VALUES (:username, :password, :firstName, :lastName, :isMentor, :isMentee, :isLookingForMatch)";

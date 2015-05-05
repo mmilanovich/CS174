@@ -1,4 +1,6 @@
 <?php
+session_start();
+$username = $_SESSION['username'];
 include('session.php');
 include('interestFunctions.php');
 include('mentorMenteeFunctions.php');
@@ -13,7 +15,7 @@ try {
                 $ps = $con->prepare($query);
                 $ps->execute();
                 $data = $ps->fetchALL(PDO::FETCH_ASSOC);
-                print_r ($data);
+                //print_r ($data);
                 } catch(PDOException $ex) {
     echo "<p>Connection failed</p> $ex";
   }
@@ -142,7 +144,7 @@ try {
 				<h3 class="special">Biography</h3>
 			</div> 
 			<div id="bioDiv" class="panel-body"> 
-        <a href="#bioModal" data-toggle="modal" data-target="#bioModal"><Strong>Edit Bio</Strong></a>
+        <a href="#bioModal" class="btn btn-lg btn-success" data-toggle="modal" data-target="#bioModal"><Strong>Edit Bio</Strong></a>
 				<img src="http://newarkpatrioticfund.co.uk/wp-content/uploads/2014/05/profile-placeholder.jpg"></img>
         		<p id="bio" class="bg-info">
         		<?php $cu = $data[0];

@@ -3,7 +3,7 @@
 	$bio = $_POST['bioText'];
 	$username = $_SESSION['username'];
 	global $names;
-	echo $_POST['bioText'];
+	//echo $_POST['bioText'];
 	
 	try {
 		$con = new PDO("mysql:host=localhost;dbname=mentorweb", "root", "root");
