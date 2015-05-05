@@ -14,20 +14,20 @@
     <script type = "text/javascript" src="ajax.js"></script>
     <script type = "text/javascript">
     
-        const CANVAS_X = 60;
-        const CANVAS_Y = 60;
-        const CANVAS_W = 350;
-        const CANVAS_H = 350;
+        const CANVAS_X = 220;
+        const CANVAS_Y = 120;
+        const CANVAS_W =  920;
+        const CANVAS_H = 500;
         const IMAGE_W  = 250;
         const IMAGE_H  = 250;
         
         const RIGHT    = CANVAS_W - 100;
         const BOTTOM   = CANVAS_H - 100;
         
-        var x  = 0;
-        var y  = 0;
-        var dx = 10;
-        var dy = 7;
+        var x  = 30;
+        var y  = 20;
+        var dx = 30;
+        var dy = 15;
         
         var cx11= 25;
         var cx12= 10;
@@ -66,12 +66,12 @@
         function startAnimation()
         {
             
-            
+           /*
             leftcon = document.getElementById("leftcanvas").getContext("2d");
             leftimage = new Image();
             leftimage.src = "photos/sjsu8.jpg";
             setInterval(leftdraw, 500);
-           
+          
             centercon1 = document.getElementById("centercanvas1").getContext("2d");
             centerimage1 = new Image();
             centerimage2 = new Image();
@@ -90,18 +90,18 @@
             centerimage7.src = "photos/pig.png";
             centerimage8.src = "photos/sheep.png";
             setInterval(centerdraw, 350); 
-           
+           */
            
             rightcon = document.getElementById("rightcanvas").getContext("2d");
             rightimage = new Image();
             rightimage.src = "photos/sjsu6.png";
-            setInterval(rightdraw, 300); 
+            setInterval(rightdraw, 500); 
                
             
             
         }
         
-        function leftdraw()
+     /*   function leftdraw()
         {
             leftcon.strokeStyle = "black";
             leftcon.fillStyle = "#F8F8FF";
@@ -120,7 +120,7 @@
             $("#leftcanvas").fadeIn(1000);
             $("#leftcanvas").fadeOut("slow");
         }    
-        
+/*        
         function centerdraw()
         {
             centercon1.strokeStyle = "black";
@@ -166,12 +166,12 @@
            
         }
             
-        
+  */      
         
         
         function rightdraw()
         {
-            rightcon.strokeStyle = "black";
+            rightcon.strokeStyle = "blue";
             rightcon.fillStyle = "#DCDCDC";
             rightcon.fillRect(0, 0, CANVAS_W, CANVAS_H);
             rightcon.strokeRect(0, 0, CANVAS_W, CANVAS_H);
@@ -184,14 +184,14 @@
             if ((x < 0) || (x > RIGHT))  dx = -dx;
             if ((y < 0) || (y > BOTTOM)) dy = -dy;
 
-            $("#rightcanvas").fadeIn(1000);
+            $("#rightcanvas").fadeIn(3000);
             $("#rightcanvas").fadeOut("slow");
         }
         
         
     </script>
 </head>
-<body style=" background-color:ghostwhite;" onload="startAnimation()">
+<body style="background-image: url('photos/connection.jpg');" onload="startAnimation()">
     
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
             <div class="container">
@@ -214,7 +214,7 @@
             <div class="form-group">
               <input type="password" placeholder="Password" class="form-control" name="password">
             </div>
-            <button type="submit" name="submitLogin" class="ui-button"><span class="glyphicon glyphicon-user"></span>
+            <button type="submit" name="submitLogin" class="btn btn-large btn-primary"><span class="glyphicon glyphicon-user"></span>
             Sign in</button>
             <span class="help-block"></span></span>
             <ul class="nav navbar-nav clearfix">
@@ -229,8 +229,10 @@
         </div><!--/.navbar-collapse -->
       </div>
     </div>
-    <div class="container" style="z-index:-1; margin-top:12%; background-color:GhostWhite">
-        <div class="row">
+    <div class="row" style="z-index:-1; margin-top:12%; background-color:#ffffff; border: 1px solid black;
+    opacity: 0.2;">
+        
+        <!--
             <div class="col-md-4">
                 <canvas id="leftcanvas"height = "500" width = "350">
                 <p class="bg-danger">Canvas not supported</p>
@@ -242,16 +244,18 @@
                 <p class="bg-danger">Canvas not supported</p>
                 </canvas>
             </div>
-            <div class="col-md-4">
-                <canvas id="rightcanvas"height = "500" width = "350">
+            -->
+            
+                <canvas id="rightcanvas" height = "800" width = "850" style="padding-left:100px;">
                 <p class="bg-danger">Canvas not supported</p>
                 </canvas>
-            </div>
-        </div>
+           
+       
    </div>
             </div>
         </div>
     </div>
+<!--
 	<form align="middle"action="">
         <button type="button" 
                 onclick="doAJAX()">
@@ -262,7 +266,7 @@
     <div id="output">
         <p align="middle">Click the button above for a special welcome message</p>
     </div>
-
+-->
     <?php include 'registerModal.php' ?>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.min.js"></script> 

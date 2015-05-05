@@ -13,17 +13,28 @@
     <script src="js/jquery-ui-1.11.4.custom/jquery-ui.js"></script>  
 </head>
 
-<body>
-        
-	<h1>Remove an interest</h1>
-	<form action="removeInterest.php" method="GET">
-		<fieldset>
-			<legend>Interest :</legend>
-			<input type="text" class="textInput" name="interest" placeholder="interest">
-			<br/>
-			<button name="submitRegister" class="submit ui-button" type="submit">Submit</button>
-		</fieldset>
-	</form>
+<body style="background-image: url('photos/connection.jpg');">
+
+<div class="row">
+	<div class="col-lg-10 col-lg-offset-1"><br>
+		<a href="profilePage.php" class="btn btn-primary btn-block">
+   		 <span class="glyphicon glyphicon-arrow-left"></span> Back </a>
+ 	 	 <h1 style="color:white; background:#337ab7; text-align:center;">Remove Interest</h1>
+		<div class="panel panel-primary">
+			<div class="panel-heading"> Enter an interest you want to remove</div>
+			<div class="panel-body">
+				<form action="removeInterest.php" method="GET">
+					
+                	<input type="text" class="form-control" name="interest" placeholder="Interest" autofocus><br>
+                	<button name="submitRegister" class="btn btn-primary btn-block" type="submit">Remove</button>
+				
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+	
+	
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.min.js"></script> 
     <script src="js/jquery.scrollTo.js"></script>

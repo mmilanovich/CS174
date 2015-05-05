@@ -32,54 +32,119 @@ include('mentorMenteeFunctions.php');
   </script>
 </head>
 
-<body>
-	<form action="SearchForMatch.php" method="GET">
-	<div class="col-lg-6 searchbar">
-		<label>Find a mentor or mentee</label>
-	    <div class="input-group">  
-	      	<input type="text" class="form-control" name="interest" placeholder="Search for an interest...">
-	      	<span class="input-group-btn">
-	        	<button type="submit" class="btn btn-default" type="button">Go!</button>
-	      	</span>		  
-	    </div><!-- /input-group -->
-	  </div><!-- /.col-lg-6 -->
-	</form>
-	<form action="AddInterest.php" method="GET">
-	<div class="col-lg-6 searchbar">
-		<label>Add an interest</label>
-	    <div class="input-group">  
-	      	<input type="text" class="form-control" name="interest" placeholder="Name of an interest...">
-	      	<span class="input-group-btn">
-	        	<button type="submit" class="btn btn-default" type="button">Add it!</button>
-	      	</span>		  
-	    </div><!-- /input-group -->
-	  </div><!-- /.col-lg-6 -->
-	</form>
-	<br>
-  <div class="wrapper">
-    <h1>Mentor Web</h1>
-    <p>An sample layout for user profile</p>
-    
-	<br/>
-	<a href="message.html"><button class="btn btn-default" type="button">Message A Contact</button><a/>
-    <div class="container clearfix">
-    
-    
-      <div class="primary">
-        <h2>Profile of</h2>
-        <h3><?php printf("$firstName $lastName")?></h3>
-        
-        
-        <h3 class="special">Biography</h3>
-        <img src="http://newarkpatrioticfund.co.uk/wp-content/uploads/2014/05/profile-placeholder.jpg"></img>
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse architecto modi ratione porro magnam explicabo! Porro dolore aut nam sed officiis dolores unde quo nostrum vero earum error ipsum cumque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere aliquam explicabo sapiente doloremque perspiciatis qui iste ipsa consectetur suscipit eum totam laborum quidem quam sint ducimus fugit dolorem illum doloribus!
-	    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse architecto modi ratione porro magnam explicabo! Porro dolore aut nam sed officiis dolores unde quo nostrum vero earum error ipsum cumque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere aliquam explicabo sapiente doloremque perspiciatis qui iste ipsa consectetur suscipit eum totam laborum quidem quam sint ducimus fugit dolorem illum doloribus!
+<body style="background-image: url('photos/connection.jpg');">
+<div class="row">
+	<div class="col-lg-10 col-lg-offset-1 "><br>
+		<a href="index.php" class="btn btn-primary btn-block">
+   		 <span class="glyphicon glyphicon-arrow-left"></span> Logout </a><br>
+ 	 	 <h1 style="color:white; background:#337ab7; text-align:center;"> theMentorWeb</h1>
+		<div class="panel panel-primary">
+			<div class="panel-heading"> <h2> Dashboard </h2></div> 
+			
+			<div class="panel-body"> 
+				<div class="col-md-4">
+					 <div class="panel panel-primary">
+			 			<div class="panel-heading"><h4>Find a mentor or mentee</h4></div>
+						 <div class="panel-body">   
+							 <form action="SearchForMatch.php" method="GET">
+							 	<div class="input-group">  
+	      							<input type="text" class="form-control" name="interest" placeholder="Search for an interest...">
+	      							<span class="input-group-btn">
+	        						<button type="submit" class="btn btn-default" type="button">Go!</button>
+	      							</span>		  
+	    						</div>
+	    					 </form>
+			 			</div>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					 <div class="panel panel-primary">
+			 			<div class="panel-heading"><h4>Add an interest</h4></div>
+						 <div class="panel-body">   
+							 <form action="AddInterest.php" method="GET">
+							 	<div class="input-group">  
+	      							<input type="text" class="form-control" name="interest" placeholder="Name of an interest...">
+	      							<span class="input-group-btn">
+	        						<button type="submit" class="btn btn-default" type="button">Add it!</button>
+	      							</span>		  
+	   			   				</div>
+	    					 </form>
+			 			</div>
+					</div>
+				</div>
+				
+				
+		<div class="col-md-4 ">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><h4> More Functions</h4></div> 
+			<div class="panel-body"> 
+				<div class="menuBar">
+       				 <a href="menu1.html" class="menuLink" style="background:#337ab7;">More<span class="caret"></span></a>
+       				 <ul class="menu" id="menu1">
+           				<li><a href="connection.php" class="btn btn-primary btn-block"> My Connections</a></li>
+           				<li><a href="message.html"	class="btn btn-primary btn-block">Message A Contact <a/></li>
+           				<li><a href="removeInterest.html" class="btn btn-primary btn-block">Remove an Interest</a></li>
+           					<?php
+           						 $mentorUsername = getMentorUsername($username);
+              						if($mentorUsername == null)
+               					 printf("<li><a href='#' class='btn btn-block btn-primary'> No Mentor Connection!</li>");
+             					 else
+                				printf("<li><a href='unmatchmentor.php' class='btn btn-block btn-primary'>Unmatch me with Mentor $mentorUsername</li> ");
 
-      	</p>
-
-        
-      	<?php
+            					$menteeUsername = getMenteeUsername($username);
+              					if($menteeUsername == null)
+                				printf("<li><a href='#'class='btn btn-block btn-primary'> No Mentee Connection!</li>");
+              					else
+               				    printf("<li><a href='unmatchmentee.php' class='btn btn-block btn-primary'>Unmatch me with mentee $menteeUsername</li> ");
+            				?>
+            			<li><a href='lookingForMatch.php'	class="btn btn-block btn-primary">Update Looking for match</a></li>
+            			<li><a href='changeMentorStatus.php'	class="btn btn-block btn-primary">Toogle Mentor Status</a></li>
+            			<li><a href='changeMenteeStatus.php'	class="btn btn-block btn-primary">Toogle Mentee Status</a></li>
+       
+					</ul>
+        		</div>
+			</div>   
+		</div>
+	</div>		
+				
+				
+				
+	<div class="col-md-8   ">
+		<div class="panel panel-primary">
+			<div class="panel-heading"> 
+				<h2><?php printf("$firstName $lastName")?></h2>
+				<h3 class="special">Biography</h3>
+			</div> 
+			<div class="panel-body"> 
+				<img src="http://newarkpatrioticfund.co.uk/wp-content/uploads/2014/05/profile-placeholder.jpg"></img>
+        		<p class="bg-info">
+        		Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+        		Aliquid cum quasi nulla molestias accusamus 
+        		aspernatur reiciendis qui optio tenetur modi repellendus 
+        		distinctio dolore nesciunt. Repellat provident explicabo 
+       			 accusamus autem perspiciatis. Lorem ipsum dolor sit amet,
+         		consectetur adipisicing elit. Esse architecto modi ratione 
+         		porro magnam explicabo! Porro dolore aut nam sed officiis 
+         		dolores unde quo nostrum vero earum error ipsum cumque? 
+         		Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+         		Facere aliquam explicabo sapiente doloremque perspiciatis
+         		 qui iste ipsa consectetur suscipit eum totam laborum quidem quam sint ducimus fugit dolorem illum doloribus!
+	    		Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+	   			 Aliquid cum quasi nulla molestias accusamus aspernatur 
+	    		reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. 
+	    		Repellat provident explicabo accusamus autem perspiciatis. 
+	    		Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+	    		Esse architecto modi ratione porro magnam explicabo! 
+	    		Porro dolore aut nam sed officiis dolores unde quo nostrum vero earum error ipsum cumque? 
+	   			Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+	    		Facere aliquam explicabo sapiente doloremque perspiciatis qui iste ipsa consectetur suscipit eum totam
+	     		laborum quidem quam sint ducimus fugit dolorem illum doloribus!
+				</p>
+			</div>    
+		</div>
+		
+        <?php
         if($mentor == 0)
           $mentorString = "";
         else
@@ -96,99 +161,64 @@ include('mentorMenteeFunctions.php');
           $lookingForMatchString = "Yes";
         ?>
 
+		<div class="panel panel-primary">
+			<div class="panel-heading">Your Info</div> 
+			<div class="panel-body"> 
+				<p class="bg-info"> Username : <?php echo $username; ?> </p>
+        		<p class="bg-info"> I'm a : <?php printf("$mentorString,  $menteeString")?> </p>
+        		<p class="bg-info"> Looking for a match : <?php echo $lookingForMatchString?></p>
+       			<p class="bg-info"> My interest : 
+       				 <?php 
+         				 $data = myInterest($username);
+         				 foreach($data as $row)
+          				{
+           					 foreach($row as $name => $value)
+            				{
+              					$interestName = getInterestName($value);
+             					 print " $interestName,";
+            				}
+          				}
+       				 ?></p>
 
-      	<p class="userInfo"> Username : <?php echo $username; ?> </p>
-        <p class="userInfo"> I'm a : <?php printf("$mentorString,  $menteeString")?> </p>
-        <p class="userInfo"> Looking for a match : <?php echo $lookingForMatchString?></p>
-        <p class="userInfo"> My interest : 
-        <?php 
-          $data = myInterest($username);
-          foreach($data as $row)
-          {
-            foreach($row as $name => $value)
-            {
-              $interestName = getInterestName($value);
-              print " $interestName,";
-            }
-          }
-        ?></p>
+        		<p class="bg-info"> My mentor : 
+        			<?php 
+          				$mentorUsername = getMentorUsername($username);
+         				 if($mentorUsername == null)
+            			printf("There is no mentor connection!");
+          				else
+           			    printf("$mentorUsername"); 
 
-        <p class="userInfo"> My mentor : 
-        <?php 
-          $mentorUsername = getMentorUsername($username);
-          if($mentorUsername == null)
-            printf("None");
-          else
-            printf("$mentorUsername"); 
+        		?> </p>
 
-        ?> </p>
-
-        <p class="userInfo"> My mentee : 
-        <?php
-          $menteeUsername = getMenteeUsername($username);
-          if($menteeUsername == null)
-            printf("None");
-          else
-            printf("$menteeUsername"); 
-        ?> </p>
-
-      </div>
+       			 <p class="bg-info"> My mentee : 
+        			<?php
+          				$menteeUsername = getMenteeUsername($username);
+         				 if($menteeUsername == null)
+          				  printf("There is no mentees connection!");
+          					else
+           				 printf("$menteeUsername"); 
+       				 ?> </p>
+			</div>    
+		</div>
+	
+      	
       
       
-      <div class="secondary">
-        <h2>Side Menu</h2>
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid cum quasi nulla molestias accusamus aspernatur reiciendis qui optio tenetur modi repellendus distinctio dolore nesciunt. Repellat provident explicabo accusamus autem perspiciatis.
-      	</p>
+      
+     
+       	
       	
 
-        <div class="menuBar">
-        <a href="menu1.html" class="menuLink">Home</a>
-        <ul class="menu" id="menu1">
-            <li><a href="pg1.html">About Us</a></li>
-            <li><a href="pg2.html">Contact Us</a></li>
-            <li><a href="pg3.html">Donate</a></li>
-            <li><a href="connection.php"> My Connections</a></li>
-        </ul>
-        </div>
-        <div class="menuBar">
-        <a href="menu2.html" class="menuLink">Contact Us</a>
-        <ul class="menu" id="menu2">
-            <li><a href="pg5.html">Send eMail</a></li>
-            <li><a href="pg6.html">Facebook</a></li>
-            <li><a href="pg7.html">Twitter</a></li>
-        </ul>
-        </div>
+        
+        
 
-        <div class="menuBar">
-        <a href="menu3.html" class="menuLink"><?php printf("$firstName $lastName")?></a>
-        <ul class="menu" id="menu3">
-            <li><a href="pg8.html">Find a Match</a></li>
-            <li><a href="removeInterest.html">Remove an Interest</a></li>
-            <?php
-            $mentorUsername = getMentorUsername($username);
-              if($mentorUsername == null)
-                printf("");
-              else
-                printf("<li><a href='unmatchmentor.php'>Unmatch me with Mentor $mentorUsername</li> ");
-
-            $menteeUsername = getMenteeUsername($username);
-              if($menteeUsername == null)
-                printf("");
-              else
-                printf("<li><a href='unmatchmentee.php'>Unmatch me with mentee $menteeUsername</li> ");
-            ?>
-            <li><a href='lookingForMatch.php'>Update Looking for match</a></li>
-            <li><a href='changeMentorStatus.php'>Toogle Mentor Status</a></li>
-            <li><a href='changeMenteeStatus.php'>Toogle Mentee Status</a></li>
+        
 
 
 
 
-
-            <li><a href="index.php">Log out</a></li>
-        </ul>
-        </div>
+       
+  
       </div>
       
     </div>
